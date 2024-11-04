@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./navbar.scss";
+
+import rasm from "../../assets/img/logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,32 +26,32 @@ const Navbar = () => {
           />
           <i className="navbar__search-icon">&#128269;</i>
         </div>
-        <div className="navbar__logo">
-          <span className="navbar__logo-text">TERRA rent a car</span>
-        </div>
+       <NavLink to="/"> <div className="navbar__logo">
+          <img src={rasm} alt="Logo" className="navbar_img" />
+        </div></NavLink>
         <nav
           className={`navbar__menu ${
             isMobileMenuOpen ? "navbar__menu--open" : ""
           }`}
         >
-          <a href="#cars" className="navbar__link">
+          <NavLink to="/cars" className="navbar__link" activeClassName="navbar__link--active">
             CARS
-          </a>
-          <a href="#brand" className="navbar__link">
+          </NavLink>
+          <NavLink to="/brands" className="navbar__link" activeClassName="navbar__link--active">
             BRAND
-          </a>
-          <a href="#services" className="navbar__link">
+          </NavLink>
+          <NavLink to="/services" className="navbar__link" activeClassName="navbar__link--active">
             SERVICES
-          </a>
-          <a href="#about" className="navbar__link">
+          </NavLink>
+          <NavLink to="/about" className="navbar__link" activeClassName="navbar__link--active">
             ABOUT US
-          </a>
-          <a href="#contacts" className="navbar__link">
+          </NavLink>
+          <NavLink to="/contact" className="navbar__link" activeClassName="navbar__link--active">
             CONTACTS
-          </a>
-          <a href="#blog" className="navbar__link">
+          </NavLink>
+          <NavLink to="/blog" className="navbar__link" activeClassName="navbar__link--active">
             BLOG
-          </a>
+          </NavLink>
           <a href="tel:+998990000441" className="navbar__phone">
             +998 (99) 000 04 41
           </a>

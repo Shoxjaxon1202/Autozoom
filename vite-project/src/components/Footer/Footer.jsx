@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../assets/img/logo.png";
-import ferr from "../../assets/img/ferrarifooter.png";
 import { NavLink } from "react-router-dom";
 import "../../styles/footer.scss";
 
@@ -115,6 +114,17 @@ const Footer = () => {
                   </NavLink>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="footer__bottom">
+            <hr className="footer__hr" />
+            <div className="footer__copyright">
+              <p className="footer__text">
+                © 2024 Terra Car Rental. United Arab Emirates.
+              </p>
+              <NavLink className={"footer__linktext"} to={"/terms"}>
+                Terms and Conditions
+              </NavLink>
             </div>
           </div>
         </div>
