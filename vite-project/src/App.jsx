@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import "./App.css";
 import Home from "./Pages/Home";
 import NotFound from "./components/NotFound/NotFound";
@@ -14,10 +13,10 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <div className="layout">
-      <Navbar/>
-      <div className="routes">
-        <Router>
+    <Router>
+      <div className="layout">
+        <Navbar />
+        <div className="routes">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cars" element={<Filter />} />
@@ -28,10 +27,10 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Router>
+        </div>
+        <Footer />
       </div>
-      <Footer/>
-    </div>
+    </Router>
   );
 }
 
