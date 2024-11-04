@@ -1,0 +1,38 @@
+.about {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../assets/img/aboutbg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  &__wrapper {
+    width: 1250px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+  }
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  &__why {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__desc h3,
+  &__desc p {
+    display: inline;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
