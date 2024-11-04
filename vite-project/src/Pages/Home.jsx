@@ -9,7 +9,6 @@ const Home = () => {
     <div className="home">
       <Services />
       <Cars />
-      <Footer />
     </div>
   );
 };
