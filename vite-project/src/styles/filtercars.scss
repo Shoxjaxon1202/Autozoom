@@ -1,0 +1,109 @@
+.filtercars {
+  width: 100%;
+  background-color: #1e1f27;
+  min-height: 100vh;
+  &_wrapper {
+    margin: auto;
+    padding: 20px 0;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+  &_left {
+    min-width: 380px;
+    background-color: #272933;
+    width: 25%;
+    padding: 20px;
+    color: #fff;
+    label {
+      align-items: center;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      font-size: 17px;
+      gap: 15px;
+      max-width: 360px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+    .input_box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    hr {
+      width: 100% !important;
+      height: 1px !important;
+      background-color: #eef; /* background rangini o‘rnatish */
+      border: none; /* chetlarini olib tashlash */
+      margin: 15px 0;
+    }
+    h5 {
+      font-size: 22px;
+      font-weight: 300;
+      margin-bottom: 25px;
+    }
+    h3 {
+      font-size: 28px;
+      letter-spacing: 1.6px;
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    select {
+      width: 100%;
+      border: 1.5px solid #c4c4c4;
+      border-radius: 7px;
+      color: #000;
+      outline: none;
+      padding: 15px 25px;
+    }
+    h4 {
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 25px;
+    }
+  }
+  &_right {
+    width: 60%;
+  }
+  &_bottom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  &_btn1 {
+    background: transparent;
+    border: 1.3px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 19px;
+    letter-spacing: 2px;
+    outline: none;
+    padding: 20px 40px;
+  }
+  &_btn2 {
+    background-color: #009a00;
+    border: 1.3px solid #009a00;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    padding: 20px 40px;
+  }
+  &_text{
+    color: rgb(165, 159, 157);
+  }
+  .filter_card{
+    width: 300px;
+    
+  }
+}
