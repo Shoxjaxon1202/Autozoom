@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
-import useData from "../../../Data/UseData"; // Yo'lni to'g'riligini tekshiring
-
+import useData from "../../../Data/UseData";
 import "./cars.scss";
 
 const carCategories = [
