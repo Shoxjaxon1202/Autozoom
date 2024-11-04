@@ -109,14 +109,28 @@
   }
   &__hr {
     animation: rgb 10s infinite;
-    width: 700px;
+    width: 800px;
     height: 1px;
   }
   &__right {
     display: flex;
     flex-direction: column;
+    gap: 50px;
+    width: 80%;
+  }
+  &__bottom {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 50px;
+  }
+  &__copyright {
+    display: flex;
+    justify-content: flex-end;
+    gap: 150px;
+    p {
+      width: 200px;
+    }
   }
 }
 @keyframes rgb {
