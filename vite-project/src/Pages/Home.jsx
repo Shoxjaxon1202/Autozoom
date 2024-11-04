@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/home.scss";
-import BudgetCars from "../components/UI/Cars/BudgetCars/BudgetCars";
 import Services from "../components/UI/Services/Services";
 import Cars from "../components/UI/Car/Cars";
 
