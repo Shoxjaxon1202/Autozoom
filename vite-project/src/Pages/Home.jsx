@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../styles/home.scss";
-import BudgetCars from "../components/UI/Cars/BudgetCars/BudgetCars";
+import BudgetCars from "../components/UI/Brands/Car/Cars";
 const Home = () => {
   return (
     <div className="home">
