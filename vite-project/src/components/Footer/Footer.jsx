@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../../assets/img/logo.png";
-import ferr from "../../assets/img/ferrarifooter.png";
 import { NavLink } from "react-router-dom";
 import "../../styles/footer.scss";
 
@@ -116,6 +115,9 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="footer__bottom">
+            <hr className="footer__hr" />
           </div>
         </div>
       </div>
