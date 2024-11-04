@@ -6,7 +6,6 @@ import Cars from "../components/UI/Car/Cars";
 const Home = () => {
   return (
     <div className="home">
-      <BudgetCars />
       <Services />
       <Cars />
     </div>
