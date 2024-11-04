@@ -1,0 +1,110 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #000000;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../assets/img/ferrarifooter.png);
+  color: #fff;
+  background-repeat: no-repeat;
+  background-size: 800px;
+  background-position-x: right;
+  background-position-y: bottom;
+  padding: 80px 0;
+  &__wrapper {
+    width: 1250px;
+    display: flex;
+    gap: 80px;
+  }
+  &__left {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  &__logo {
+    width: 130px;
+  }
+  &__text {
+    font-size: 13px;
+    font-weight: 200;
+  }
+  &__btn {
+    width: 200px;
+    border: 1px solid #fff;
+    padding: 20px;
+    font-size: 15px;
+    border-radius: 20px;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s linear;
+    &:hover {
+      background-color: red;
+      border: 1px solid #000000;
+    }
+  }
+  &__top {
+    display: flex;
+    gap: 30px;
+  }
+  &__cars {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__linkc {
+    width: 390px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  &__link {
+    transition: all 0.5s;
+    width: 100px;
+    &:hover {
+      color: red;
+    }
+  }
+  &__linktext {
+    font-size: 13px;
+    color: #bababa;
+    transition: all 0.3s;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  &__title {
+    font-weight: 400;
+  }
+  &__icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  &__icon {
+    width: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &__about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__aboutus {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

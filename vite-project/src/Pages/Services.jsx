@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import Serv from "../components/UI/Services/Services";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 const Services = () => {
   return (
-    <div>
-      <h2>Services Page</h2>
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <Serv />
+      <Footer />
+    </>
+  );
+};
 
-export default Services
+export default Services;
