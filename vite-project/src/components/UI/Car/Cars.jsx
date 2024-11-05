@@ -11,7 +11,7 @@ const carCategories = [
   "Sports cars Rental Emirates",
   "Hyper Cars Rental Emirates",
   "Luxury Cars Rental Emirates",
-  "Suv Cars Rental Emirates", // "Renal" so'zi "Rental" ga tuzatildi
+  "Suv Cars Rental Emirates", 
   "Cabriolet cars rental Emirates",
 ];
 
