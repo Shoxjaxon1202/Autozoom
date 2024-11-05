@@ -26,30 +26,55 @@ const Navbar = () => {
           />
           <i className="navbar__search-icon">&#128269;</i>
         </div>
-       <NavLink to="/"> <div className="navbar__logo">
-          <img src={rasm} alt="Logo" className="navbar_img" />
-        </div></NavLink>
+        <NavLink to="/">
+          <div className="navbar__logo">
+            <img src={rasm} alt="Logo" className="navbar_img" />
+          </div>
+        </NavLink>
         <nav
           className={`navbar__menu ${
             isMobileMenuOpen ? "navbar__menu--open" : ""
-          }`}
-        >
-          <NavLink to="/cars" className="navbar__link" activeClassName="navbar__link--active">
+          }`}>
+          <NavLink
+            to="/cars"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             CARS
           </NavLink>
-          <NavLink to="/brands" className="navbar__link" activeClassName="navbar__link--active">
+          <NavLink
+            to="/brands"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             BRAND
           </NavLink>
-          <NavLink to="/services" className="navbar__link" activeClassName="navbar__link--active">
+          <NavLink
+            to="/services"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             SERVICES
           </NavLink>
-          <NavLink to="/about" className="navbar__link" activeClassName="navbar__link--active">
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             ABOUT US
           </NavLink>
-          <NavLink to="/contact" className="navbar__link" activeClassName="navbar__link--active">
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             CONTACTS
           </NavLink>
-          <NavLink to="/blog" className="navbar__link" activeClassName="navbar__link--active">
+          <NavLink
+            to="/blog"
+            className={({ isActive }) =>
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
+            }>
             BLOG
           </NavLink>
           <a href="tel:+998990000441" className="navbar__phone">
