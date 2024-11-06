@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import img from "../../../assets/img/bgsuper.webp";
+import "../../../styles/super.scss";
 
 const SuperCar = () => {
   return (
-    <div>
-      <h2>SuperCar</h2>
+    <div className="super">
+      <div className="super__img"></div>
+      <div className="super__wrapper"></div>
     </div>
-  )
-}
+  );
+};
 
-export default SuperCar
+export default SuperCar;
