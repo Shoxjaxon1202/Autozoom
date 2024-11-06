@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/filtercars.scss";
 import { NavLink } from "react-router-dom";
 import rasm from "../assets/img/image.png";
-import useData from "../Data/UseData";
+import useData from "./useData";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 const Filter = () => {
