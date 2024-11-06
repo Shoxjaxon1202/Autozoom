@@ -1,0 +1,11 @@
+.super {
+  width: 100%;
+  display: flex;
+  &__img {
+    background-image: url(/assets/lambocurrent-DTKjIHCQ.webp);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: sepia(100%) saturate(15) grayscale(10%);
+  }
+}
