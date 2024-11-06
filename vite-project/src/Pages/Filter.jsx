@@ -3,16 +3,18 @@ import "../styles/filtercars.scss";
 import { NavLink } from "react-router-dom";
 import rasm from "../assets/img/image.png";
 import useData from "../Data/UseData";
+import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 const Filter = () => {
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/models"
   );
+
   const {
-    data: branddata,
-    loading: brandloading,
-    error: branderror,
-  } = useData("https://realauto.limsa.uz/api/brands");
+    data: carsdata,
+    loading: carsloading,
+    error: carserror,
+  } = useData("https://realauto.limsa.uz/api/cars");
 
   const [filters, setFilters] = useState({ carType: [], brand: [] });
 
@@ -34,6 +36,11 @@ const Filter = () => {
     filters.carType.length ? filters.carType.includes(item.carType) : true
   );
 
+  function dataMap() {
+    carsdata?.data?.map((elem) => console.log(elem?.brand?.title));
+  }
+
+  dataMap();
   return (
     <div className="filtercars">
       <div className="filtercars_wrapper">
@@ -42,7 +49,6 @@ const Filter = () => {
           <h5>Offers</h5>
           <hr />
 
-          {/* Car Type Filter */}
           <FilterGroup
             title="Car type"
             options={[
@@ -60,28 +66,21 @@ const Filter = () => {
 
           <hr />
 
-          {/* Brand Filter */}
           <h4>Brand</h4>
-          {brandloading ? (
-            <p>Loading brands...</p>
-          ) : branderror ? (
-            <p>Error: {branderror.message}</p>
-          ) : (
-            branddata?.data?.map((brand) => (
-              <div className="input_box" key={brand.id}>
-                <input
-                  type="checkbox"
-                  checked={filters.brand.includes(brand.title)}
-                  onChange={() => handleCheckboxChange("brand", brand.title)}
-                  id={`brand-${brand.id}`} // Unique ID for each checkbox
-                />
-                <label htmlFor={`brand-${brand.id}`}>{brand.title}</label>{" "}
-                {/* Linking label to checkbox */}
-              </div>
-            ))
-          )}
+          {carsdata?.data?.map((brand) => (
+            <div className="input_box" key={brand.id}>
+              <input
+                type="checkbox"
+                checked={filters.brand.includes(brand?.brand.title)}
+                onChange={() =>
+                  handleCheckboxChange("brand", brand?.brand?.title)
+                }
+                id={`brand-${brand.id}`}
+              />
+              <label htmlFor={`brand-${brand.id}`}>{brand?.brand?.title}</label>{" "}
+            </div>
+          ))}
 
-          {/* Model Selector */}
           <h4>Model</h4>
           {loading ? (
             <p>Loading models...</p>
@@ -122,20 +121,44 @@ const Filter = () => {
             Luxury Cars for Rent in Dubai / Hire the latest supercar
           </p>
           <div className="filter_cards">
-            <div className="filter_card">
-              <NavLink to={"/carsinfo"}>
-                <div>
-                  <img src={rasm} alt="Car" className="cars_img" />
+            {carsdata?.data?.map((elem) => (
+              <div key={elem?.id} className="filter_card">
+                <NavLink to={"/carsinfo"}>
+                  <div className="car_image">
+                    <img
+                      src={`https://realauto.limsa.uz/api/uploads/images/${elem?.car_images[0]?.image?.src}`}
+                      alt=""
+                      className="cars_img"
+                    />
+                  </div>
+                  <h4 className="car_title">
+                    {elem?.brand?.title} {elem?.model?.name}
+                  </h4>
+                  <hr />
+                  <span className="cars_span">
+                    <h4 className="cars_subtitle2">AED {elem?.price}</h4>
+                    <p className="cars_text">/${elem.price}</p>
+                  </span>
+                  <p className="cars_text">per day: {elem?.limitperday}</p>
+                </NavLink>
+                <div className="contact_buttons">
+                  <a
+                    href="https://wa.me/900998210"
+                    className="whatsapp_button"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <FaWhatsapp /> WhatsApp
+                  </a>
+                  <a
+                    href="https://t.me/abdusalimov_shoxjaxon"
+                    className="telegram_button"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <FaTelegramPlane /> Telegram
+                  </a>
                 </div>
-                <h4 className="cars_subtitle">Car</h4>
-                <hr />
-                <span className="cars_span">
-                  <h4 className="cars_subtitle2">Price</h4>
-                  <p className="cars_text">Price</p>
-                </span>
-                <p className="cars_text">per day:</p>
-              </NavLink>
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
