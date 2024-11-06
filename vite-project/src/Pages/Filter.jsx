@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/filtercars.scss";
 import { NavLink } from "react-router-dom";
 import rasm from "../assets/img/image.png";
