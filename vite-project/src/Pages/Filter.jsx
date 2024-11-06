@@ -97,7 +97,6 @@ const Filter = () => {
             </select>
           )}
 
-          {/* Filter Action Buttons */}
           <div className="filtercars_bottom">
             <button className="filtercars_btn1" onClick={handleReset}>
               Reset
@@ -107,7 +106,6 @@ const Filter = () => {
             </button>
           </div>
 
-          {/* Selected Filters Display */}
           <div>
             <h4>Selected Filters:</h4>
             <p>Car Type: {filters.carType.join(", ") || "None"}</p>
@@ -115,7 +113,6 @@ const Filter = () => {
           </div>
         </div>
 
-        {/* Right Side Content */}
         <div className="filtercars_right">
           <p className="filtercars_text">
             Luxury Cars for Rent in Dubai / Hire the latest supercar
@@ -176,10 +173,9 @@ const FilterGroup = ({ title, options, filters, onChange, category }) => (
             type="checkbox"
             checked={filters[category].includes(option)}
             onChange={() => onChange(category, option)}
-            id={option} // Unique ID for each checkbox
+            id={option}
           />
           <label htmlFor={option}>{option}</label>{" "}
-          {/* Linking label to checkbox */}
         </div>
       ))}
     </form>
