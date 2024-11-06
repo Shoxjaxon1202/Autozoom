@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
-import useData from "../../../Data/useData";
+import useData from "../../../Data/UseData";
 
 import "./cars.scss";
 
@@ -11,7 +11,7 @@ const carCategories = [
   "Sports cars Rental Emirates",
   "Hyper Cars Rental Emirates",
   "Luxury Cars Rental Emirates",
-  "Suv Cars Renal Emirates",
+  "Suv Cars Rental Emirates", // "Renal" so'zi "Rental" ga tuzatildi
   "Cabriolet cars rental Emirates",
 ];
 
@@ -53,8 +53,7 @@ const Cars = () => {
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
                 <NavLink
-                  // to={`/cars/${category.replace(/\s+/g, "-").toLowerCase()}`}
-                  to={"/cars"}
+                  to={"/cars"} // Yo‘lni to'g'riligini tekshiring
                   className="cars_top_right">
                   <h4>SEE ALL</h4>
                   <IoIosArrowDropright className="cars_icon" />
