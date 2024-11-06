@@ -115,7 +115,7 @@ const Filter = () => {
 
         <div className="filtercars_right">
           <p className="filtercars_text">
-            Luxury Cars for Rent in Dubai / Hire the latest supercar
+             Cars for Rent in Dubai / Hire the latest supercar
           </p>
           <div className="filter_cards">
             {carsdata?.data?.map((elem) => (
