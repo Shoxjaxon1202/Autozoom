@@ -117,7 +117,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer__bottom">
-            <hr className="footer__hr" />
+            <hr className="footer__hr faq__hr" />
             <div className="footer__copyright">
               <p className="footer__text">
                 © 2024 Terra Car Rental. United Arab Emirates.

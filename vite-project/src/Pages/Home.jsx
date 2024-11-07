@@ -5,6 +5,8 @@ import Cars from "../components/UI/Car/Cars";
 import LuxuryCarsInfo from "../components/UI/LuxuryCarsInfo/LuxuryCarsInfo";
 import SportCarInfo from "../components/UI/SportCarInfo/SportCarInfo";
 import SuperCar from "../components/UI/SuperCar/SuperCar";
+import Faq from "../components/UI/Faq/Faq";
+import Follow from "../components/UI/Follow/Follow";
 
 const Home = () => {
   return (
@@ -14,6 +16,8 @@ const Home = () => {
       <LuxuryCarsInfo />
       <SportCarInfo />
       <SuperCar />
+      <Faq />
+      <Follow />
     </div>
   );
 };

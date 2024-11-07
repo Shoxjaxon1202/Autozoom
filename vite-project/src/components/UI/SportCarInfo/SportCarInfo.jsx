@@ -28,8 +28,8 @@ const SportCarInfo = () => {
             Benz, Porsche, and Range Rover, to name a few. Rent a car with the
             best car rental company in Dubai.
           </p>
-          <NavLink className={"serv__link"} to={"/services1"}>
-            <h4 className="serv__btn">LEARN MORE</h4>
+          <NavLink className={"serv__link"} to={"/cars"}>
+            <h4 className="serv__btn">ALL CARS</h4>
             <svg
               className="serv__icon"
               xmlns="http://www.w3.org/2000/svg"
