@@ -1,46 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/filtercars.scss";
 import { NavLink } from "react-router-dom";
-import rasm from "../assets/img/image.png";
 import useData from "./useData";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
 const Filter = () => {
-  const { data, loading, error } = useData(
-    "https://realauto.limsa.uz/api/models"
-  );
+  const {
+    data: modelsData,
+    loading: modelsLoading,
+    error: modelsError,
+  } = useData("https://realauto.limsa.uz/api/models");
 
   const {
-    data: carsdata,
-    loading: carsloading,
-    error: carserror,
+    data: carsData,
+    loading: carsLoading,
+    error: carsError,
   } = useData("https://realauto.limsa.uz/api/cars");
 
-  const [filters, setFilters] = useState({ carType: [], brand: [] });
+  const [filteredData, setFilteredData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
+  const [filters, setFilters] = useState({ carType: [], brand: [], model: "" });
+
+  useEffect(() => {
+    if (carsData) {
+      setFilteredData(carsData.data);
+      setDisplayData(carsData.data); // Barcha mashinalarni boshlang'ich ko'rinish uchun
+    }
+  }, [carsData]);
 
   const handleCheckboxChange = (category, value) => {
     setFilters((prevFilters) => {
       const newCategory = prevFilters[category].includes(value)
         ? prevFilters[category].filter((item) => item !== value)
         : [...prevFilters[category], value];
-
       return { ...prevFilters, [category]: newCategory };
     });
   };
 
-  const handleReset = () => setFilters({ carType: [], brand: [] });
+  const handleModelChange = (event) => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      model: event.target.value,
+    }));
+  };
 
-  const handleApplyFilter = () => console.log("Selected Filters:", filters);
+  const handleReset = () => setFilters({ carType: [], brand: [], model: "" });
 
-  const filteredModels = data?.data?.filter((item) =>
-    filters.carType.length ? filters.carType.includes(item.carType) : true
-  );
+  const handleApplyFilter = () => {
+    const filtered = filteredData.filter((car) => {
+      const matchesCarType =
+        filters.carType.length === 0 ||
+        filters.carType.includes(car.category.name_en);
 
-  function dataMap() {
-    carsdata?.data?.map((elem) => console.log(elem?.brand?.title));
-  }
+      const matchesBrand =
+        filters.brand.length === 0 || filters.brand.includes(car.brand.title);
 
-  dataMap();
+      const matchesModel =
+        !filters.model || car.model.id.toString() === filters.model;
+
+      return matchesCarType && matchesBrand && matchesModel;
+    });
+
+    setDisplayData(filtered);
+  };
+
   return (
     <div className="filtercars">
       <div className="filtercars_wrapper">
@@ -67,31 +90,35 @@ const Filter = () => {
           <hr />
 
           <h4>Brand</h4>
-          {carsdata?.data?.map((brand) => (
+          {carsData?.data?.map((brand) => (
             <div className="input_box" key={brand.id}>
               <input
                 type="checkbox"
-                checked={filters.brand.includes(brand?.brand.title)}
+                checked={filters.brand.includes(brand.brand.title)}
                 onChange={() =>
-                  handleCheckboxChange("brand", brand?.brand?.title)
+                  handleCheckboxChange("brand", brand.brand.title)
                 }
                 id={`brand-${brand.id}`}
               />
-              <label htmlFor={`brand-${brand.id}`}>{brand?.brand?.title}</label>{" "}
+              <label htmlFor={`brand-${brand.id}`}>{brand.brand.title}</label>
             </div>
           ))}
 
           <h4>Model</h4>
-          {loading ? (
+          {modelsLoading ? (
             <p>Loading models...</p>
-          ) : error ? (
-            <p>Error: {error.message}</p>
+          ) : modelsError ? (
+            <p>Error: {modelsError.message}</p>
           ) : (
-            <select name="model" id="model-select">
+            <select
+              name="model"
+              id="model-select"
+              value={filters.model}
+              onChange={handleModelChange}>
               <option value="">Select a model</option>
-              {filteredModels?.map((item) => (
-                <option key={item.id} value={item.brand_title}>
-                  {item.brand_title}
+              {modelsData?.data?.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.name}
                 </option>
               ))}
             </select>
@@ -110,33 +137,34 @@ const Filter = () => {
             <h4>Selected Filters:</h4>
             <p>Car Type: {filters.carType.join(", ") || "None"}</p>
             <p>Brand: {filters.brand.join(", ") || "None"}</p>
+            <p>Model: {filters.model || "None"}</p>
           </div>
         </div>
 
         <div className="filtercars_right">
           <p className="filtercars_text">
-             Cars for Rent in Dubai / Hire the latest supercar
+            Cars for Rent in Dubai / Hire the latest supercar
           </p>
           <div className="filter_cards">
-            {carsdata?.data?.map((elem) => (
-              <div key={elem?.id} className="filter_card">
-                <NavLink to={"/carsinfo"}>
+            {displayData.map((car) => (
+              <div key={car.id} className="filter_card">
+                <NavLink to="/carsinfo">
                   <div className="car_image">
                     <img
-                      src={`https://realauto.limsa.uz/api/uploads/images/${elem?.car_images[0]?.image?.src}`}
-                      alt=""
+                      src={`https://realauto.limsa.uz/api/uploads/images/${car.car_images[0]?.image?.src}`}
+                      alt={car.model.name}
                       className="cars_img"
                     />
                   </div>
                   <h4 className="car_title">
-                    {elem?.brand?.title} {elem?.model?.name}
+                    {car.brand.title} {car.model.name}
                   </h4>
                   <hr />
                   <span className="cars_span">
-                    <h4 className="cars_subtitle2">AED {elem?.price}</h4>
-                    <p className="cars_text">/${elem.price}</p>
+                    <h4 className="cars_subtitle2">AED {car.price}</h4>
+                    <p className="cars_text">/${car.price}</p>
                   </span>
-                  <p className="cars_text">per day: {elem?.limitperday}</p>
+                  <p className="cars_text">per day: {car.limitperday}</p>
                 </NavLink>
                 <div className="contact_buttons">
                   <a
@@ -175,7 +203,7 @@ const FilterGroup = ({ title, options, filters, onChange, category }) => (
             onChange={() => onChange(category, option)}
             id={option}
           />
-          <label htmlFor={option}>{option}</label>{" "}
+          <label htmlFor={option}>{option}</label>
         </div>
       ))}
     </form>

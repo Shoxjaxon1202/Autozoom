@@ -1,0 +1,392 @@
+.carsinfo {
+  width: 100%;
+  background-color: #181818;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+  &_swipers {
+    width: 100%;
+  }
+  &__wrapper {
+    max-width: 1250px;
+    width: 100%;
+    padding: 20px;
+  }
+
+  &__header {
+    margin-bottom: 20px;
+  }
+  &__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #f0f0f0;
+  }
+  &__main-swiper {
+    margin: 100px 0 !important;
+  }
+  &__main-swiper,
+  &__thumb-swiper {
+    margin-bottom: 20px;
+    .swiper-slide {
+      background-color: inherit;
+    }
+  }
+
+  &__thumb-swiper {
+    height: auto !important;
+    .swiper-slide {
+      border: 0.5px solid #fff;
+      border-radius: 6px;
+    }
+  }
+  &__main-image {
+    margin: 0 30px;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  &__thumbnail {
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.3s;
+
+    &:hover {
+      border: 2px solid #ff8800;
+    }
+  }
+
+  &__details {
+    margin-bottom: 20px;
+
+    &__pricing {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    &__specs {
+      p {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__form {
+    background-color: #282828;
+    padding: 15px;
+    border-radius: 8px;
+
+    &-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    &__input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #404040;
+      color: #fff;
+    }
+
+    &__textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    &__submit-button {
+      background-color: #ff8800;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #e67e22;
+      }
+    }
+  }
+
+  &_left {
+    width: 50%;
+  }
+  &_right {
+    margin-top: 100px;
+    width: 50%;
+    hr {
+      width: 100%;
+      height: 1px;
+      color: #fff;
+      background-color: #fff;
+      margin: 20px 0;
+    }
+  }
+  &_top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  //   &__price-info{
+  //     display: flex;
+  //     align-items: start;
+  //     gap: 20px;
+  //   }
+
+  &__wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__title {
+    width: 100%;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  &__pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: #b3b3b3;
+
+      & > .carsinfo__price,
+      & > .carsinfo__deposit,
+      & > .carsinfo__premium-protection {
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: bold;
+        display: block;
+      }
+    }
+  }
+
+  &_details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    &_card {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+  }
+  &__detail {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    font-size: 14px;
+    gap: 5px;
+
+    svg {
+      font-size: 24px;
+      color: #555;
+    }
+  }
+  &__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: #b3b3b3;
+
+      &::before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: #444;
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+  #deposit {
+    text-decoration: line-through;
+  }
+  &__price {
+    display: flex;
+    margin: 10px 0;
+  }
+  .price_span {
+    color: gray;
+    letter-spacing: 2px;
+  }
+  &__price-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  &__contact {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+
+    &-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #555;
+      }
+
+      &--whatsapp {
+        background-color: #25d366;
+      }
+
+      &--telegram {
+        background-color: #0088cc;
+      }
+
+      &--call {
+        background-color: #ff5722;
+      }
+    }
+  }
+
+  .carsinfo__main-image {
+    max-width: 100%;
+    border-radius: 5px;
+  }
+
+  .carsinfo__thumbnail {
+    max-width: 100%;
+    border-radius: 5px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body {
+  background: #000;
+  color: #000;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carsinfo {
+  .swiper-button-prev,
+  .swiper-button-next {
+    font-weight: bolder !important;
+    --swiper-navigation-size: 25px;
+    --swiper-theme-color: black;
+  }
+}
