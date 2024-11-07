@@ -15,7 +15,7 @@ export default function CarsSwiper({ cars }) {
       className="cars_mySwiper">
       {cars.map((car, index) => (
         <SwiperSlide key={index}>
-          <NavLink to={"/carsinfo"}>
+          <NavLink to={`/carsinfo/${car?.id}`}>
             <div>
               <img
                 src={`https://realauto.limsa.uz/api/uploads/images/${car?.car_images[0]?.image?.src}`}
