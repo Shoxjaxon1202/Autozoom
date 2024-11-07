@@ -148,7 +148,7 @@ const Filter = () => {
           <div className="filter_cards">
             {displayData.map((car) => (
               <div key={car.id} className="filter_card">
-                <NavLink to="/carsinfo">
+                <NavLink to={`/carsinfo/${car?.id}`}>
                   <div className="car_image">
                     <img
                       src={`https://realauto.limsa.uz/api/uploads/images/${car.car_images[0]?.image?.src}`}
