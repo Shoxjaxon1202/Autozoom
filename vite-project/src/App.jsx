@@ -15,11 +15,14 @@ import Services1 from "./Pages/Services1";
 import Services2 from "./Pages/Services2";
 import Faqpage from "./Pages/Faqpage";
 import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
 
 function App() {
   return (
     <Router>
       <div className="layout">
+        <ToastContainer />
         <Navbar />
         <div className="routes">
           <Routes>
@@ -34,7 +37,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/faq" element={<Faqpage />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/carsinfo/:id" element={<CarsInfo/>} />
+            <Route path="/carsinfo/:id" element={<CarsInfo />} />
           </Routes>
         </div>
         <Footer />

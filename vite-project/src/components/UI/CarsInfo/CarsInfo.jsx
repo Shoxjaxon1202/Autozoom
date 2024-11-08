@@ -7,7 +7,7 @@ import "swiper/css/thumbs";
 import "./carsinfo.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import useData from "../../../Pages/useData";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {
   FaCar,
   FaClock,
@@ -27,19 +27,92 @@ import { FaLeftRight } from "react-icons/fa6";
 import { RiGasStationFill } from "react-icons/ri";
 import { LiaCarSideSolid } from "react-icons/lia";
 
+import { FaWhatsapp } from "react-icons/fa";
+import { SiTelegram } from "react-icons/si";
+import { FaPhoneAlt } from "react-icons/fa";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 const CarsInfo = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    period: "",
+    details: "",
+  });
 
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/cars"
   );
-
   const params = useParams()?.id;
 
-  const item = data?.data.filter((elem) => elem?.id == params)[0];
+  const item = data?.data?.find((elem) => elem?.id == params);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading data</p>;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const token = "7886355630:AAF6y6f6eQxfNSPXjgAV_545zBPvTN8o9K0";
+    const chatId = "6575316231";
+
+    const message = `Name: ${formData.name}\nPhone: ${formData.phone}\nPeriod: ${formData.period}\nDetails: ${formData.details}`;
+
+    axios
+      .post(`https://api.telegram.org/bot${token}/sendMessage`, {
+        chat_id: chatId,
+        text: message,
+      })
+      .then((response) => {
+        if (response.data.ok) {
+          toast.success("Message sent successfully!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+          });
+        } else {
+          console.error("Telegram response error: ", response.data);
+          toast.error("Invalid messages", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+          });
+        }
+        setFormData({
+          name: "",
+          phone: "",
+          period: "",
+          details: "",
+        });
+      })
+
+      .catch((error) => {
+        console.error(
+          "Request failed with error:",
+          error.response?.data || error.message
+        );
+        toast.error("Error!", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+        });
+        ("An error occurred.");
+      });
+  };
 
   console.log(item);
 
@@ -90,10 +163,17 @@ const CarsInfo = () => {
               </Swiper>
             </div>
             <div className="carsinfo__specs">
-              <p>Year: 2022</p>
-              <p>Seats: 4</p>
-              <p>Color: Black</p>
-              {/* Qo'shimcha xususiyatlar qo'shing */}
+              <h2 className="carsinfo_specs_title">
+                Good to know {item?.model?.name} ({item?.color})
+              </h2>
+              <p>Kilometrage limit per day</p>
+              <h3 className="carsinfo_specs_title">
+                {item?.max_speed} KM Every extra km will be charged 20 AED/km
+              </h3>
+              <p>Car rental deposit amount</p>
+              <h4 className="carsinfo_specs_title">
+                The deposit is refunded within 28 days
+              </h4>
             </div>
           </div>
           <div className="carsinfo_right">
@@ -169,16 +249,65 @@ const CarsInfo = () => {
             </div>
             <hr />
             <div className="carsinfo__contact">
-              <button className="carsinfo__contact-button carsinfo__contact-button--whatsapp">
-                WhatsApp
-              </button>
-              <button className="carsinfo__contact-button carsinfo__contact-button--telegram">
-                Telegram
-              </button>
-              <button className="carsinfo__contact-button carsinfo__contact-button--call">
-                Call
-              </button>
+              <a target="_blank" href="https://w.me/1234567890">
+                <button className="carsinfo__contact-button carsinfo__contact-button--whatsapp">
+                  <FaWhatsapp />
+                  WhatsApp
+                </button>
+              </a>
+
+              <a target="_blank" href="https://t.me/abdusalimov_shoxjaxon">
+                <button className="carsinfo__contact-button carsinfo__contact-button--telegram">
+                  <SiTelegram />
+                  Telegram
+                </button>
+              </a>
+
+              <a href="tel:+998900998210">
+                <button className="carsinfo__contact-button carsinfo__contact-button--call">
+                  <FaPhoneAlt />
+                  Call
+                </button>
+              </a>
             </div>
+            <form className="carsinfo_form" onSubmit={handleSubmit}>
+              <label htmlFor="">
+                {item?.model?.name} / {item?.color}
+              </label>
+              <input
+                placeholder="Name"
+                type="text"
+                name="name"
+                className="carsinfo_input"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              <input
+                placeholder="Phone"
+                type="number"
+                name="phone"
+                className="carsinfo_input"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              <input
+                placeholder="Period"
+                type="number"
+                name="period"
+                className="carsinfo_input"
+                value={formData.period}
+                onChange={handleChange}
+              />
+              <input
+                placeholder="Details"
+                type="text"
+                name="details"
+                className="carsinfo_input"
+                value={formData.details}
+                onChange={handleChange}
+              />
+              <button type="submit">Send</button>
+            </form>
           </div>
         </div>
 
