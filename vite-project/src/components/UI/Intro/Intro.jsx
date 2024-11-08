@@ -1,6 +1,4 @@
 import React from "react";
-import "swiper/css";
-import "swiper/css/pagination";
 import "./intro.scss";
 
 import car1 from "../../../assets/img/image.png";
