@@ -16,7 +16,7 @@ import Services2 from "./Pages/Services2";
 import Faqpage from "./Pages/Faqpage";
 import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

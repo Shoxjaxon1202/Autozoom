@@ -7,6 +7,7 @@ const SportCarInfo = () => {
     <div className="sport">
       <div className="sport__wrapper">
         <iframe
+          className="sport__iframe"
           width={700}
           height={450}
           src="https://www.youtube.com/embed/rsHmvxJ86PA?si=Fit3hGaH8QxSoj3s"
