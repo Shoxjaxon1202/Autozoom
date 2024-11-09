@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .swiper-slide img {
@@ -17,17 +18,45 @@
   height: 100%;
   object-fit: cover;
 }
+
 .cars_mySwiper {
+  height: 100%;
+  // .swiper-slide {
+  //   background-color: #272933 !important;
+  //   height: auto;
+  //   a {
+  //     padding: 20px 0;
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: center;
+  //     width: 80%;
+  //     height: 100%;
+  //     color: #fff !important;
+  //     border-radius: 10px;
+  //     &:hover {
+  //       //   background: radial-gradient(circle, #272933, #3e3f5c, #7a8fb9);
+  //       // background: linear-gradient(to right, #272933, #545c8a);
+  //       background: linear-gradient(to right, #272933, #161723);
+  //     }
+  //   }
+  // }
   .swiper-slide {
     background-color: #272933 !important;
-    height: 400px;
+    height: auto; // Moslashuvchan balandlik uchun
+    min-height: 300px; // Minimal balandlik qo'shing
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     a {
-      padding: 10px;
+      width: 80%;
+      text-align: start;
+      padding: 20px 0;
+      height: 100%;
+      padding: 20px 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 80%;
-      height: 100%;
       color: #fff !important;
       border-radius: 10px;
       &:hover {
