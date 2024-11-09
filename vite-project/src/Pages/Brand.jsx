@@ -26,7 +26,7 @@ const Brand = ({ handleBrand }) => {
     },
     {
       src: "https://realauto.limsa.uz/api/uploads/images/18515cef-39ef-4e5e-9a77-3df3b12ddd42.png",
-      alt: "Toyota",
+      alt: "Tayota",
     },
     {
       src: "https://realauto.limsa.uz/api/uploads/images/b847eb62-cb01-479e-9946-511c8cbccb1a.png",

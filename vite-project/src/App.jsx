@@ -40,7 +40,12 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home handleBrand={handleBrand} handleAllCategory={handleAllCategory} />}
+              element={
+                <Home
+                  handleBrand={handleBrand}
+                  handleAllCategory={handleAllCategory}
+                />
+              }
             />
             <Route
               path="/cars"
