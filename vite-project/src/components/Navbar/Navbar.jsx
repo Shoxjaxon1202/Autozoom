@@ -4,7 +4,7 @@ import "./navbar.scss";
 
 import rasm from "../../assets/img/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ handleBrand }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
@@ -109,13 +109,15 @@ const Navbar = () => {
             <img src={rasm} alt="Logo" className="navbar_img" />
           </div>
         </NavLink>
-        <nav className={`navbar__menu ${isMobileMenuOpen ? "navbar__menu--open" : ""}`}>
+        <nav
+          className={`navbar__menu ${
+            isMobileMenuOpen ? "navbar__menu--open" : ""
+          }`}>
           <NavLink
             to="/cars"
-            className={({ isActive }) => 
+            className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             CARS
           </NavLink>
           <NavLink
@@ -124,8 +126,7 @@ const Navbar = () => {
             to="/brands"
             className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             BRAND
           </NavLink>
           {isModalOpen && (
@@ -134,14 +135,19 @@ const Navbar = () => {
                 <h3 className="modal-title">Select a Brand</h3>
                 <div className="brands-grid">
                   {brands.map((brand, index) => (
-                    <div key={index} className="brand-item">
+                    <NavLink to={"/cars"}
+                      onClick={() => {
+                        handleBrand(brand.alt);
+                      }}
+                      key={index}
+                      className="brand-item">
                       <img
                         src={brand.src}
                         alt={brand.alt}
                         className="brand-image"
                       />
                       <span>Rent {brand.alt} Emirates</span>
-                    </div>
+                    </NavLink >
                   ))}
                 </div>
               </div>
@@ -152,32 +158,28 @@ const Navbar = () => {
             to="/services"
             className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             SERVICES
           </NavLink>
           <NavLink
             to="/about"
             className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             ABOUT US
           </NavLink>
           <NavLink
             to="/contact"
             className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             CONTACTS
           </NavLink>
           <NavLink
             to="/blog"
             className={({ isActive }) =>
               isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }
-          >
+            }>
             BLOG
           </NavLink>
           <a href="tel:+998990000441" className="navbar__phone">

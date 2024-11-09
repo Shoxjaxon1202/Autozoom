@@ -35,7 +35,7 @@ function App() {
     <Router>
       <div className="layout">
         <ToastContainer />
-        <Navbar />
+        <Navbar handleBrand={handleBrand} />
         <div className="routes">
           <Routes>
             <Route
