@@ -75,6 +75,7 @@ const Navbar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
@@ -108,15 +109,11 @@ const Navbar = () => {
             <img src={rasm} alt="Logo" className="navbar_img" />
           </div>
         </NavLink>
-        <nav
-          className={`navbar__menu ${
-            isMobileMenuOpen ? "navbar__menu--open" : ""
-          }`}
-        >
+        <nav className={`navbar__menu ${isMobileMenuOpen ? "navbar__menu--open" : ""}`}>
           <NavLink
             to="/cars"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+            className={({ isActive }) => 
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             CARS
@@ -126,7 +123,7 @@ const Navbar = () => {
             onMouseLeave={handleMouseLeave}
             to="/brands"
             className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             BRAND
@@ -154,7 +151,7 @@ const Navbar = () => {
           <NavLink
             to="/services"
             className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             SERVICES
@@ -162,7 +159,7 @@ const Navbar = () => {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             ABOUT US
@@ -170,7 +167,7 @@ const Navbar = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             CONTACTS
@@ -178,7 +175,7 @@ const Navbar = () => {
           <NavLink
             to="/blog"
             className={({ isActive }) =>
-              `navbar__link ${isActive ? "navbar__link--active" : ""}`
+              isActive ? "navbar__link navbar__link--active" : "navbar__link"
             }
           >
             BLOG

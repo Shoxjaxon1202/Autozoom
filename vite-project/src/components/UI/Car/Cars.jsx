@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
-import useData from "../../../Data/useData";
+import useData from "../../../Pages/useData";
 
 import "./cars.scss";
 
-const carCategories = [
-  "Budget cars Rental Emirates",
-  "Sports cars Rental Emirates",
-  "Hyper Cars Rental Emirates",
-  "Luxury Cars Rental Emirates",
-  "Suv Cars Renal Emirates",
-  "Cabriolet cars rental Emirates",
-];
-
 const Cars = () => {
+  const carCategories = [
+    "Budget cars Rental Emirates",
+    "Sports cars Rental Emirates",
+    "Hyper Cars Rental Emirates",
+    "Luxury Cars Rental Emirates",
+    "Suv Cars Renal Emirates",
+    "Cabriolet cars rental Emirates",
+  ];
+  const [base, setBase] = useState([]);
+
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/cars"
   );
@@ -52,10 +53,7 @@ const Cars = () => {
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
-                <NavLink
-                  // to={`/cars/${category.replace(/\s+/g, "-").toLowerCase()}`}
-                  to={"/cars"}
-                  className="cars_top_right">
+                <NavLink to={"/cars"} className="cars_top_right">
                   <h4>SEE ALL</h4>
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
