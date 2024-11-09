@@ -1,213 +1,232 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../styles/filtercars.scss";
-import { NavLink } from "react-router-dom";
-import useData from "./useData";
-import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import axios from "axios";
+import { NavLink, useParams } from "react-router-dom";
+import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
-const Filter = () => {
-  const {
-    data: modelsData,
-    loading: modelsLoading,
-    error: modelsError,
-  } = useData("https://realauto.limsa.uz/api/models");
+const CarsPage = () => {
+  const API = `https://realauto.limsa.uz/api/cars`;
+  const [base, setBase] = useState([]);
+  const [model, setModel] = useState("");
+  const [filteredCars, setFilteredCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const params = useParams();
 
-  const {
-    data: carsData,
-    loading: carsLoading,
-    error: carsError,
-  } = useData("https://realauto.limsa.uz/api/cars");
+  const carTypeRefs = useRef([]);
+  const brandRefs = useRef([]);
 
-  const [filteredData, setFilteredData] = useState([]);
-  const [displayData, setDisplayData] = useState([]);
-  const [filters, setFilters] = useState({ carType: [], brand: [], model: "" });
+  const fetchData = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(API);
+      setBase(response?.data?.data || []);
+
+      if (params?.id) {
+        const selecCategories = response?.data?.data.filter(
+          (e) => e?.id === params?.id
+        );
+
+        console.log(response?.data?.data);
+
+        const newbase = response?.data?.data.filter(
+          (e) => e?.category?.name_en == selecCategories[0]?.category?.name_en
+        );
+
+        console.log(newbase);
+
+        setFilteredCars(newbase);
+      } else if (params?.id === undefined) {
+        setFilteredCars(response?.data?.data);
+      }
+    } catch (error) {
+      setError("Ma'lumotlarni olishda xatolik yuz berdi.");
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Yuklanish tugadi
+    }
+  };
 
   useEffect(() => {
-    if (carsData) {
-      setFilteredData(carsData.data);
-      setDisplayData(carsData.data); // Barcha mashinalarni boshlang'ich ko'rinish uchun
-    }
-  }, [carsData]);
-
-  const handleCheckboxChange = (category, value) => {
-    setFilters((prevFilters) => {
-      const newCategory = prevFilters[category].includes(value)
-        ? prevFilters[category].filter((item) => item !== value)
-        : [...prevFilters[category], value];
-      return { ...prevFilters, [category]: newCategory };
-    });
-  };
+    fetchData();
+  }, []);
 
   const handleModelChange = (event) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      model: event.target.value,
-    }));
+    setModel(event.target.value);
   };
 
-  const handleReset = () => setFilters({ carType: [], brand: [], model: "" });
+  const handleApplyFilter = (event) => {
+    event.preventDefault();
+    let filtered = base;
 
-  const handleApplyFilter = () => {
-    const filtered = filteredData.filter((car) => {
-      const matchesCarType =
-        filters.carType.length === 0 ||
-        filters.carType.includes(car.category.name_en);
+    if (model) {
+      filtered = filtered.filter((item) => item?.model?.id === model);
+    }
 
-      const matchesBrand =
-        filters.brand.length === 0 || filters.brand.includes(car.brand.title);
+    const selectedCategories = carTypeRefs.current
+      .filter((input) => input.checked)
+      .map((input) => input.value);
+    const selectedBrands = brandRefs.current
+      .filter((input) => input.checked)
+      .map((input) => input.value);
 
-      const matchesModel =
-        !filters.model || car.model.id.toString() === filters.model;
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter((item) =>
+        selectedCategories.includes(item?.category?.name_en)
+      );
+    }
 
-      return matchesCarType && matchesBrand && matchesModel;
-    });
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((item) =>
+        selectedBrands.includes(item?.brand?.title)
+      );
+    }
 
-    setDisplayData(filtered);
+    setFilteredCars(filtered);
   };
+
+  const handleResetFilter = () => {
+    setModel("");
+    setFilteredCars(base);
+    carTypeRefs.current.forEach((input) => (input.checked = false));
+    brandRefs.current.forEach((input) => (input.checked = false));
+  };
+
+  const uniqueCategories = [
+    ...new Set(base.map((item) => item?.category?.name_en)),
+  ];
+  const uniqueBrands = [...new Set(base.map((item) => item?.brand?.title))];
 
   return (
-    <div className="filtercars">
+    <section className="filtercars">
       <div className="filtercars_wrapper">
         <div className="filtercars_left">
-          <h3>Filtered By</h3>
+          <h3 className="filter-title">Filtered by</h3>
           <h5>Offers</h5>
           <hr />
+          <form className="filtercars_form" onSubmit={handleApplyFilter}>
+            <h4 className="part-title">Car type</h4>
+            {uniqueCategories.map((category, index) => (
+              <label key={index}>
+                <input
+                  className="filter-inputs"
+                  type="checkbox"
+                  name="carType"
+                  value={category}
+                  ref={(el) => (carTypeRefs.current[index] = el)}
+                />
+                {category}
+              </label>
+            ))}
+            <hr id="hr" />
+            <h4>Brand</h4>
+            {uniqueBrands.map((brand, index) => (
+              <label key={index}>
+                <input
+                  className="filter-inputs"
+                  type="checkbox"
+                  name="brand"
+                  value={brand}
+                  ref={(el) => (brandRefs.current[index] = el)}
+                />
+                {brand}
+              </label>
+            ))}
 
-          <FilterGroup
-            title="Car type"
-            options={[
-              "Budget Cars Rental Emirates",
-              "Sports Cars Rental Emirates",
-              "Hyper Cars Rental Emirates",
-              "Luxury Cars Rental Emirates",
-              "Suv Cars Rental Emirates",
-              "Cabriolet Cars Rental Emirates",
-            ]}
-            filters={filters}
-            onChange={handleCheckboxChange}
-            category="carType"
-          />
-
-          <hr />
-
-          <h4>Brand</h4>
-          {carsData?.data?.map((brand) => (
-            <div className="input_box" key={brand.id}>
-              <input
-                type="checkbox"
-                checked={filters.brand.includes(brand.brand.title)}
-                onChange={() =>
-                  handleCheckboxChange("brand", brand.brand.title)
-                }
-                id={`brand-${brand.id}`}
-              />
-              <label htmlFor={`brand-${brand.id}`}>{brand.brand.title}</label>
-            </div>
-          ))}
-
-          <h4>Model</h4>
-          {modelsLoading ? (
-            <p>Loading models...</p>
-          ) : modelsError ? (
-            <p>Error: {modelsError.message}</p>
-          ) : (
+            <h4>Model</h4>
             <select
-              name="model"
-              id="model-select"
-              value={filters.model}
+              className="filter-to-select"
+              value={model}
               onChange={handleModelChange}>
-              <option value="">Select a model</option>
-              {modelsData?.data?.map((model) => (
-                <option key={model.id} value={model.id}>
-                  {model.name}
+              <option value="" hidden>
+                Select Model
+              </option>
+              {base.map((item) => (
+                <option
+                  key={item?.model?.id}
+                  className="select-option-filter"
+                  value={item?.model?.id}>
+                  {item?.model?.name}
                 </option>
               ))}
             </select>
-          )}
-
-          <div className="filtercars_bottom">
-            <button className="filtercars_btn1" onClick={handleReset}>
-              Reset
-            </button>
-            <button className="filtercars_btn2" onClick={handleApplyFilter}>
-              Apply Filter
-            </button>
-          </div>
-
-          <div>
-            <h4>Selected Filters:</h4>
-            <p>Car Type: {filters.carType.join(", ") || "None"}</p>
-            <p>Brand: {filters.brand.join(", ") || "None"}</p>
-            <p>Model: {filters.model || "None"}</p>
-          </div>
+            <div className="filtercars_bottom">
+              <button
+                type="button"
+                className="filtercars_btn1"
+                onClick={handleResetFilter}>
+                Reset
+              </button>
+              <button type="submit" className="filtercars_btn2">
+                Apply Filter
+              </button>
+            </div>
+          </form>
         </div>
-
         <div className="filtercars_right">
           <p className="filtercars_text">
             Cars for Rent in Dubai / Hire the latest supercar
           </p>
           <div className="filter_cards">
-            {displayData.map((car) => (
-              <div key={car.id} className="filter_card">
-                <NavLink to={`/carsinfo/${car?.id}`}>
-                  <div className="car_image">
-                    <img
-                      src={`https://realauto.limsa.uz/api/uploads/images/${car.car_images[0]?.image?.src}`}
-                      alt={car.model.name}
-                      className="cars_img"
-                    />
-                  </div>
-                  <h4 className="car_title">
-                    {car.brand.title} {car.model.name}
-                  </h4>
-                  <hr />
-                  <span className="cars_span">
-                    <h4 className="cars_subtitle2">AED {car.price}</h4>
-                    <p className="cars_text">/${car.price}</p>
-                  </span>
-                  <p className="cars_text">per day: {car.limitperday}</p>
-                </NavLink>
-                <div className="contact_buttons">
-                  <a
-                    href="https://wa.me/900998210"
-                    className="whatsapp_button"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <FaWhatsapp /> WhatsApp
-                  </a>
-                  <a
-                    href="https://t.me/abdusalimov_shoxjaxon"
-                    className="telegram_button"
-                    target="_blank"
-                    rel="noopener noreferrer">
-                    <FaTelegramPlane /> Telegram
-                  </a>
-                </div>
+            {loading ? (
+              <div className="loader-container">
+                <div className="loader"></div>
               </div>
-            ))}
+            ) : error ? (
+              <p className="error-message">{error}</p>
+            ) : filteredCars.length > 0 ? (
+              filteredCars.map((item) => (
+                <div key={item?.id} className="filter_card">
+                  <NavLink to={`/carsinfo/${item?.id}`} key={item.id}>
+                    <div className="car_image">
+                      <img
+                        className="cars_img"
+                        src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
+                        alt={item?.name_en}
+                        style={{ display: "block" }}
+                      />
+                    </div>
+                    <h4 id="carsinfo_card_title" className="car_title">
+                      {item?.brand?.title} {item?.model?.name}
+                    </h4>
+                    <hr />
+                    <span className="cars_span">
+                      <h4 className="cars_subtitle2">AED 0</h4>
+                      <p className="cars_text">/$0</p>
+                    </span>
+                    <p className="cars_text">per day: {item.limitperday}</p>
+                  </NavLink>
+                  <div className="contact_buttons">
+                    <a
+                      href="https://wa.me/900998210"
+                      className="whatsapp_button"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <FaWhatsapp /> WhatsApp
+                    </a>
+                    <a
+                      href="https://t.me/abdusalimov_shoxjaxon"
+                      className="telegram_button"
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      <FaTelegramPlane /> Telegram
+                    </a>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="not-found">
+                <h1>404</h1>
+                <p>Mashinalar topilmadi</p>
+                {/* <a href="/cars">Boshqatdan qidirish</a> */}
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-const FilterGroup = ({ title, options, filters, onChange, category }) => (
-  <div>
-    <h4>{title}</h4>
-    <form>
-      {options.map((option) => (
-        <div className="input_box" key={option}>
-          <input
-            type="checkbox"
-            checked={filters[category].includes(option)}
-            onChange={() => onChange(category, option)}
-            id={option}
-          />
-          <label htmlFor={option}>{option}</label>
-        </div>
-      ))}
-    </form>
-  </div>
-);
-
-export default Filter;
+export default CarsPage;

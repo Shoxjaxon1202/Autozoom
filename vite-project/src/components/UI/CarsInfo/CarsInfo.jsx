@@ -275,6 +275,7 @@ const CarsInfo = () => {
                 {item?.model?.name} / {item?.color}
               </label>
               <input
+                required
                 placeholder="Name"
                 type="text"
                 name="name"
@@ -283,6 +284,7 @@ const CarsInfo = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Phone"
                 type="number"
                 name="phone"
@@ -291,6 +293,7 @@ const CarsInfo = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Period"
                 type="number"
                 name="period"
