@@ -4,8 +4,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/brand.scss";
 import { Autoplay, Pagination } from "swiper/modules";
+import { NavLink } from "react-router-dom";
 
-const BrandSlider = () => {
+const Brand = ({ handleBrand }) => {
   const brands = [
     {
       src: "https://realauto.limsa.uz/api/uploads/images/d714a6ff-1959-4189-89f7-957853352e77.png",
@@ -85,20 +86,28 @@ const BrandSlider = () => {
           }}
           modules={[Autoplay, Pagination]}
           breakpoints={{
+            1024: {
+              slidesPerView: 6,
+              spaceBetween: 30,
+            },
             768: {
               slidesPerView: 4,
+              spaceBetween: 20,
             },
             480: {
               slidesPerView: 2,
+              spaceBetween: 10,
             },
           }}
           className="brand-swiper mySwiper">
           {brands.map((brand, index) => (
             <SwiperSlide key={index}>
-              <div className="brand-card">
+              <NavLink to={"/cars"}
+                className="brand-card"
+                onClick={() => handleBrand(brand.alt)}>
                 <img src={brand.src} alt={`Brand ${brand.alt}`} />
                 <h3 className="brand-card-title">{brand.alt}</h3>
-              </div>
+              </NavLink>
             </SwiperSlide>
           ))}
         </Swiper>
@@ -107,4 +116,4 @@ const BrandSlider = () => {
   );
 };
 
-export default BrandSlider;
+export default Brand;
