@@ -16,9 +16,17 @@ import Services2 from "./Pages/Services2";
 import Faqpage from "./Pages/Faqpage";
 import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleAllCategory = (category) => {
+    setSelectedCategory(category); 
+  };
+
+
   return (
     <Router>
       <div className="layout">
@@ -26,8 +34,14 @@ function App() {
         <Navbar />
         <div className="routes">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cars" element={<Filter />} />
+            <Route
+              path="/"
+              element={<Home handleAllCategory={handleAllCategory} />}
+            />
+            <Route
+              path="/cars"
+              element={<Filter selectedCategory={selectedCategory} />}
+            />
             <Route path="/brands" element={<Brand />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services1" element={<Services1 />} />

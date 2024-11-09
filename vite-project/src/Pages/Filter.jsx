@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
-const CarsPage = () => {
+const CarsPage = ({ selectedCategory }) => {
   const API = `https://realauto.limsa.uz/api/cars`;
   const [base, setBase] = useState([]);
   const [model, setModel] = useState("");
@@ -28,13 +28,9 @@ const CarsPage = () => {
           (e) => e?.id === params?.id
         );
 
-        console.log(response?.data?.data);
-
         const newbase = response?.data?.data.filter(
           (e) => e?.category?.name_en == selecCategories[0]?.category?.name_en
         );
-
-        console.log(newbase);
 
         setFilteredCars(newbase);
       } else if (params?.id === undefined) {
@@ -97,6 +93,17 @@ const CarsPage = () => {
     ...new Set(base.map((item) => item?.category?.name_en)),
   ];
   const uniqueBrands = [...new Set(base.map((item) => item?.brand?.title))];
+
+  useEffect(() => {
+    if (selectedCategory) {
+      const filtered = base.filter(
+        (car) => car?.category?.name_en === selectedCategory
+      );
+      setFilteredCars(filtered);
+    } else {
+      setFilteredCars(base);
+    }
+  }, [selectedCategory, base]);
 
   return (
     <section className="filtercars">

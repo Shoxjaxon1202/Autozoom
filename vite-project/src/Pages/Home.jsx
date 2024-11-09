@@ -8,10 +8,10 @@ import SuperCar from "../components/UI/SuperCar/SuperCar";
 import Faq from "../components/UI/Faq/Faq";
 import Follow from "../components/UI/Follow/Follow";
 
-const Home = () => {
+const Home = ({ handleAllCategory }) => {
   return (
     <div className="home">
-      <Cars />
+      <Cars handleAllCategory={handleAllCategory} />
       <Services />
       <LuxuryCarsInfo />
       <SportCarInfo />
