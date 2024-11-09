@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/brand.scss";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 const BrandSlider = () => {
   const brands = [
@@ -71,36 +71,38 @@ const BrandSlider = () => {
 
   return (
     <div className="brand-slider-container">
-      <h2 className="brand-title">Brands</h2>
-      <Swiper
-        slidesPerView={4}
-        spaceBetween={20}
-        pagination={{
-          clickable: true,
-        }}
-        autoplay={{
-          delay: 3000,
-        }}
-        modules={[Pagination]}
-        breakpoints={{
-          768: {
-            slidesPerView: 4,
-          },
-          480: {
-            slidesPerView: 2,
-          },
-        }}
-        className="brand-swiper mySwiper"
-      >
-        {brands.map((brand, index) => (
-          <SwiperSlide key={index}>
-            <div className="brand-card">
-              <img src={brand.src} alt={`Brand ${brand.alt}`} />
-              <h3 className="brand-card-title">{brand.alt}</h3>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="brand_wrapper">
+        <h2 className="brand-title">Brands</h2>
+        <Swiper
+          loop={true}
+          slidesPerView={6}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          autoplay={{
+            delay: 3000,
+          }}
+          modules={[Autoplay, Pagination]}
+          breakpoints={{
+            768: {
+              slidesPerView: 4,
+            },
+            480: {
+              slidesPerView: 2,
+            },
+          }}
+          className="brand-swiper mySwiper">
+          {brands.map((brand, index) => (
+            <SwiperSlide key={index}>
+              <div className="brand-card">
+                <img src={brand.src} alt={`Brand ${brand.alt}`} />
+                <h3 className="brand-card-title">{brand.alt}</h3>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import car3 from "../../../assets/img/image2.png";
 import car4 from "../../../assets/img/image3.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { NavLink } from "react-router-dom";
 
 const Intro = () => {
   return (
@@ -15,16 +15,22 @@ const Intro = () => {
       <div className="intro-header">
         <h1>TOP LUXURY CAR RENTAL EMIRATES</h1>
         <h2>№1</h2>
-        <p>Best sports car & supercar rental Emirates, Exclusive offers on luxury car rental Emirates Cheap price</p>
-        <button className="catalog-button">RENT A CAR EMIRATES CATALOG</button>
+        <p>
+          Best sports car & supercar rental Emirates, Exclusive offers on luxury
+          car rental Emirates Cheap price
+        </p>
+        <NavLink to={"/cars"}>
+          <button className="catalog-button">
+            RENT A CAR EMIRATES CATALOG
+          </button>
+        </NavLink>
       </div>
 
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
         pagination={{ clickable: true }}
-        className="mySwiper"
-      >
+        className="mySwiper">
         <SwiperSlide>
           <img src={car1} alt="Car 1" />
         </SwiperSlide>

@@ -6,7 +6,9 @@ import useData from "../../../Pages/useData";
 
 import "./cars.scss";
 
-const Cars = () => {
+const Cars = ({ handleAllCategory }) => {
+  const [carsByCategory, setCarsByCategory] = useState({});
+
   const carCategories = [
     "Budget cars Rental Emirates",
     "Sports cars Rental Emirates",
@@ -15,13 +17,10 @@ const Cars = () => {
     "Suv Cars Renal Emirates",
     "Cabriolet cars rental Emirates",
   ];
-  const [base, setBase] = useState([]);
 
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/cars"
   );
-
-  const [carsByCategory, setCarsByCategory] = useState({});
 
   useEffect(() => {
     if (data) {
@@ -40,6 +39,7 @@ const Cars = () => {
   // Xatolik yuz berganda
   if (error) return <div>Error: {error.message}</div>;
 
+
   return (
     <div className="cars">
       <div className="cars_wrapper">
@@ -53,7 +53,9 @@ const Cars = () => {
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
-                <NavLink to={"/cars"} className="cars_top_right">
+                <NavLink onClick={()=> {
+                  handleAllCategory(category)
+                }} to={"/cars"} className="cars_top_right">
                   <h4>SEE ALL</h4>
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
