@@ -269,3 +269,172 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 1200px) {
+  .filtercars {
+    &_wrapper {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &_left {
+      width: 90%;
+      min-width: unset;
+    }
+
+    &_right {
+      width: 100%;
+    }
+
+    // .filter_card {
+    //   width: 45%;
+    // }
+  }
+}
+
+@media (max-width: 768px) {
+  .filtercars {
+    &_wrapper {
+      padding: 15px 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &_right {
+      padding: 30px;
+    }
+
+    .filter_card {
+      box-sizing: border-box;
+      width: 50%;
+      height: auto;
+    }
+
+    .not-found {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .filter_card {
+    width: 70% !important;
+  }
+}
+@media (max-width: 500px) {
+  .filtercars {
+    &_left {
+      padding: 20px;
+      width: 90%;
+
+      label{
+        margin-bottom: 15px;
+        line-height: 25px;
+      }
+    }
+
+    .filter_card {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+
+    .whatsapp_button,
+    .telegram_button {
+      font-size: 0.7em;
+      padding: 8px 12px;
+    }
+
+    &_btn1 , &_btn2{
+      padding: 20px;
+    }
+    .not-found {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .filtercars {
+    .filter_card {
+      .car_image img {
+        max-height: 180px;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .filter_card {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .filtercars {
+    .filter_card {
+      .car_image img {
+        max-height: 150px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .filtercars {
+    .filter_card {
+      .car_image img {
+        width: 100%;
+
+        max-height: 120px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .contact_buttons {
+    a {
+      font-size: 18px;
+      padding: 18px 36px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .contact_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      font-size: 14px !important;
+      padding: 5px 6px !important;
+      font-weight: normal !important;
+    }
+  }
+}
+
+@media (max-width: 710px) {
+  .contact_buttons {
+    a {
+      font-size: 14px !important;
+      padding: 5px 6px !important;
+      font-weight: normal !important;
+    }
+    #aloqa {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .contact_buttons {
+    a {
+      font-size: 14px;
+      padding: 12px 24px;
+    }
+  }
+}
