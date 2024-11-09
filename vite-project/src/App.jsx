@@ -17,7 +17,10 @@ import Faqpage from "./Pages/Faqpage";
 import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 import { useEffect, useState } from "react";
+
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);

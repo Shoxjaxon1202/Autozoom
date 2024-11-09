@@ -66,10 +66,10 @@ const Footer = () => {
                 <NavLink className={"footer__link"} to={"/about"}>
                   ABOUT US
                 </NavLink>
-                <NavLink className={"footer__linktext"} to={"/"}>
+                <NavLink className={"footer__linktext footer__faq"} to={"/"}>
                   Our Team
                 </NavLink>
-                <NavLink className={"footer__linktext"} to={"/faq"}>
+                <NavLink className={"footer__linktext footer__faq"} to={"/faq"}>
                   FAQ
                 </NavLink>
               </div>
@@ -119,10 +119,13 @@ const Footer = () => {
           <div className="footer__bottom">
             <hr className="footer__hr faq__hr" />
             <div className="footer__copyright">
-              <p className="footer__text">
+              <p className="footer__text footer__ter">
                 © 2024 Terra Car Rental. United Arab Emirates.
               </p>
-              <NavLink className={"footer__linktext"} to={"/terms"}>
+              <NavLink
+                className={"footer__linktext footer__terms"}
+                to={"/terms"}
+              >
                 Terms and Conditions
               </NavLink>
             </div>

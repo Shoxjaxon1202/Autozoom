@@ -9,8 +9,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 10px;
   }
   &__desc {
+    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -21,10 +23,35 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-  &__title {
-    width: 500px;
+}
+@media only screen and (max-width: 1230px) {
+  .sport {
+    &__iframe {
+      width: 500px;
+    }
   }
-  &__text {
-    width: 500px;
+}
+@media only screen and (max-width: 1030px) {
+  .sport {
+    &__iframe {
+      width: 400px;
+    }
+    &__desc {
+      width: 400px;
+    }
+  }
+}
+@media only screen and (max-width: 835px) {
+  .sport {
+    &__wrapper {
+      flex-direction: column;
+      gap: 30px;
+    }
+    &__iframe {
+      width: 100%;
+    }
+    &__desc {
+      width: 100%;
+    }
   }
 }
