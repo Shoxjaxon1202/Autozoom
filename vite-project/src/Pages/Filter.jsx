@@ -4,7 +4,7 @@ import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
-const CarsPage = ({ selectedCategory }) => {
+const CarsPage = ({ selectedCategory, selectedBrand }) => {
   const API = `https://realauto.limsa.uz/api/cars`;
   const [base, setBase] = useState([]);
   const [model, setModel] = useState("");
@@ -104,6 +104,19 @@ const CarsPage = ({ selectedCategory }) => {
       setFilteredCars(base);
     }
   }, [selectedCategory, base]);
+
+  useEffect(() => {
+    if (selectedBrand) {
+      const filtered = base.filter(
+        (car) => car?.brand?.title === selectedBrand
+      );
+      setFilteredCars(filtered);
+    } else {
+      setFilteredCars(base);
+    }
+  }, [selectedBrand, base]);
+
+  console.log(filteredCars);
 
   return (
     <section className="filtercars">

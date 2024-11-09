@@ -1,5 +1,5 @@
 .intro-container {
-
+  width: 100%;
   text-align: center;
   color: #ffffff;
   background: #1d1f2b;
@@ -7,6 +7,10 @@
   padding-bottom: 50px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+  .intro_wrapper{
+    max-width: 1350px;
+    margin: auto;
+  }
   .intro-header {
     margin-bottom: 70px;
 

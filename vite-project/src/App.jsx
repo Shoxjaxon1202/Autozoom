@@ -18,17 +18,18 @@ import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import { useEffect, useState } from "react";
-
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
 
   const handleAllCategory = (category) => {
-    setSelectedCategory(category); 
+    setSelectedCategory(category);
   };
-
+  const handleBrand = (brand) => {
+    setSelectedBrand(brand);
+  };
 
   return (
     <Router>
@@ -39,13 +40,21 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home handleAllCategory={handleAllCategory} />}
+              element={<Home handleBrand={handleBrand} handleAllCategory={handleAllCategory} />}
             />
             <Route
               path="/cars"
-              element={<Filter selectedCategory={selectedCategory} />}
+              element={
+                <Filter
+                  selectedBrand={selectedBrand}
+                  selectedCategory={selectedCategory}
+                />
+              }
             />
-            <Route path="/brands" element={<Brand />} />
+            <Route
+              path="/brands"
+              element={<Brand handleBrand={handleBrand} />}
+            />
             <Route path="/services" element={<Services />} />
             <Route path="/services1" element={<Services1 />} />
             <Route path="/services2" element={<Services2 />} />
