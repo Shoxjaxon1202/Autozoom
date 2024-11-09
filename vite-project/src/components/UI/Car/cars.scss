@@ -4,13 +4,12 @@
 
   &_wrapper {
     color: white;
-    padding-bottom: 30px;
     max-width: 1250px;
     min-height: 50vh;
     margin: auto;
-    padding: 10px;
+    padding-top: 100px;
   }
-  
+
   &_title {
     color: #fff !important;
   }
@@ -76,9 +75,4 @@
     line-height: 10px;
     letter-spacing: 0.1rem;
   }
-  &_section{
-    margin-bottom: 80px;
-  }
 }
-
-

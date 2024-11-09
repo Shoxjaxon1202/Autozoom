@@ -12,7 +12,9 @@ export default function CarsSwiper({ cars }) {
       slidesPerView={3}
       spaceBetween={30}
       modules={[Pagination]}
-      className="cars_mySwiper">
+      className="cars_mySwiper"
+      style={{ height: "100%", minHeight: "500px" }} // Minimal balandlik qo'shish
+    >
       {cars.map((car, index) => (
         <SwiperSlide key={index}>
           <NavLink to={`/carsinfo/${car?.id}`}>
@@ -28,8 +30,8 @@ export default function CarsSwiper({ cars }) {
             </h4>
             <hr />
             <span className="cars_span">
-              <h4 className="cars_subtitle2">AED {car?.price}</h4>
-              <p className="cars_text">/${car.price}</p>
+              <h4 className="cars_subtitle2">AED {car?.price}0</h4>
+              <p className="cars_text">/${car.price}0</p>
             </span>
             <p className="cars_text">per day: {car?.limitperday}</p>
           </NavLink>
