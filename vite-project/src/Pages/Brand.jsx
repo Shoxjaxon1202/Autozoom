@@ -94,15 +94,16 @@ const Brand = ({ handleBrand }) => {
               slidesPerView: 4,
               spaceBetween: 20,
             },
-            480: {
-              slidesPerView: 2,
+            400: {
+              slidesPerView: 1,
               spaceBetween: 10,
             },
           }}
           className="brand-swiper mySwiper">
           {brands.map((brand, index) => (
             <SwiperSlide key={index}>
-              <NavLink to={"/cars"}
+              <NavLink
+                to={"/cars"}
                 className="brand-card"
                 onClick={() => handleBrand(brand.alt)}>
                 <img src={brand.src} alt={`Brand ${brand.alt}`} />

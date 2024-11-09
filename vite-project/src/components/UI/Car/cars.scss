@@ -13,6 +13,7 @@
   &_title {
     color: #fff !important;
   }
+
   &_top {
     width: 100%;
     display: flex;
@@ -20,6 +21,7 @@
     justify-content: space-between;
     text-transform: uppercase;
     margin-bottom: 30px;
+
     &_right {
       display: flex;
       align-items: center;
@@ -29,50 +31,136 @@
       &:hover {
         h4 {
           color: red;
-          transition: color 0.5s ease, transform 0.5s ease; /* Rang va harakat animatsiyasi */
+          transition: color 0.5s ease, transform 0.5s ease;
           font-weight: 300;
-          transform: translateX(-20px); /* Chapga siljitish */
+          transform: translateX(-20px);
         }
         .cars_icon {
           color: red;
-          transition: color 0.8s ease; /* Rang animatsiyasi */
+          transition: color 0.8s ease;
         }
       }
     }
   }
+
   &_icon {
     font-size: 40px;
   }
+
   &_title {
     font-size: 30px;
   }
+
   &_img {
     width: 100% !important;
     height: 100%;
   }
+
   &_subtitle {
     font-size: 19px;
     margin-left: 5px;
     margin-bottom: 10px;
   }
+
   &_subtitle2 {
     margin-top: 10px;
     font-size: 19px;
     margin-bottom: 10px;
   }
+
   hr {
     margin-bottom: 10px;
   }
+
   &_span {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 10px;
   }
+
   &_text {
     font-size: 15px;
-    color: rgb(158 154 154);
+    color: rgb(158, 154, 154);
     line-height: 10px;
     letter-spacing: 0.1rem;
+  }
+
+  /* Media Queries */
+  @media (max-width: 1024px) {
+    &_wrapper {
+      padding-top: 80px;
+      max-width: 90%;
+    }
+
+    &_title {
+      font-size: 26px;
+    }
+
+    &_icon {
+      font-size: 35px;
+    }
+
+    &_subtitle,
+    &_subtitle2 {
+      font-size: 17px;
+    }
+
+    &_text {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &_top {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    &_icon {
+      font-size: 30px;
+    }
+
+    &_title {
+      font-size: 24px;
+    }
+
+    &_subtitle,
+    &_subtitle2 {
+      font-size: 16px;
+    }
+
+    &_text {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &_wrapper {
+      padding-top: 50px;
+    }
+
+    &_title {
+      font-size: 20px;
+    }
+
+    &_icon {
+      font-size: 25px;
+    }
+
+    &_subtitle,
+    &_subtitle2 {
+      font-size: 14px;
+    }
+
+    &_text {
+      font-size: 12px;
+      letter-spacing: 0.08rem;
+    }
+
+    &_top {
+      margin-bottom: 20px;
+    }
   }
 }

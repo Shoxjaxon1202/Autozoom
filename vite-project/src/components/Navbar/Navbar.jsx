@@ -104,88 +104,92 @@ const Navbar = ({ handleBrand }) => {
           />
           <i className="navbar__search-icon">&#128269;</i>
         </div>
-        <NavLink to="/">
-          <div className="navbar__logo">
-            <img src={rasm} alt="Logo" className="navbar_img" />
-          </div>
-        </NavLink>
-        <nav
-          className={`navbar__menu ${
-            isMobileMenuOpen ? "navbar__menu--open" : ""
-          }`}>
-          <NavLink
-            to="/cars"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            CARS
+        <ul className="navbar_list">
+          <NavLink to="/">
+            <div className="navbar__logo">
+              <img src={rasm} alt="Logo" className="navbar_img" />
+            </div>
           </NavLink>
-          <NavLink
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            to="/brands"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            BRAND
-          </NavLink>
-          {isModalOpen && (
-            <div className="modal-overlay">
-              <div className="modal-content">
-                <h3 className="modal-title">Select a Brand</h3>
-                <div className="brands-grid">
-                  {brands.map((brand, index) => (
-                    <NavLink to={"/cars"}
-                      onClick={() => {
-                        handleBrand(brand.alt);
-                      }}
-                      key={index}
-                      className="brand-item">
-                      <img
-                        src={brand.src}
-                        alt={brand.alt}
-                        className="brand-image"
-                      />
-                      <span>Rent {brand.alt} Emirates</span>
-                    </NavLink >
-                  ))}
+          <nav
+            className={`navbar__menu ${
+              isMobileMenuOpen ? "navbar__menu--open" : ""
+            }`}>
+            <NavLink
+              to="/cars"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              CARS
+            </NavLink>
+            <NavLink
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              to="/brands"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              BRAND
+            </NavLink>
+            {isModalOpen && (
+              <div className="modal-overlay">
+                <div className="modal-content">
+                  <h3 className="modal-title">Select a Brand</h3>
+                  <div className="brands-grid">
+                    {brands.map((brand, index) => (
+                      <NavLink
+                        to={"/cars"}
+                        onClick={() => {
+                          handleBrand(brand.alt);
+                        }}
+                        key={index}
+                        className="brand-item">
+                        <img
+                          src={brand.src}
+                          alt={brand.alt}
+                          className="brand-image"
+                        />
+                        <span>Rent {brand.alt} Emirates</span>
+                      </NavLink>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            SERVICES
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            ABOUT US
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            CONTACTS
-          </NavLink>
-          <NavLink
-            to="/blog"
-            className={({ isActive }) =>
-              isActive ? "navbar__link navbar__link--active" : "navbar__link"
-            }>
-            BLOG
-          </NavLink>
-          <a href="tel:+998990000441" className="navbar__phone">
-            +998 (99) 000 04 41
-          </a>
-        </nav>
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              SERVICES
+            </NavLink>
+            <NavLink
+              id="aboutus"
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              <span>About</span> <span> US</span>
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              CONTACTS
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }>
+              BLOG
+            </NavLink>
+            <a id="telefon" href="tel:+998990000441" className="navbar__phone">
+              +998 (99) 000 04 41
+            </a>
+          </nav>
+        </ul>
         <div className="navbar__burger" onClick={toggleMobileMenu}>
           <div className="navbar__burger-line"></div>
           <div className="navbar__burger-line"></div>

@@ -116,8 +116,6 @@ const CarsPage = ({ selectedCategory, selectedBrand }) => {
     }
   }, [selectedBrand, base]);
 
-  console.log(filteredCars);
-
   return (
     <section className="filtercars">
       <div className="filtercars_wrapper">
@@ -223,14 +221,16 @@ const CarsPage = ({ selectedCategory, selectedBrand }) => {
                       className="whatsapp_button"
                       target="_blank"
                       rel="noopener noreferrer">
-                      <FaWhatsapp /> WhatsApp
+                      <FaWhatsapp className="filtercars_icon" />
+                      <span id="aloqa">WhatsApp</span>
                     </a>
                     <a
                       href="https://t.me/abdusalimov_shoxjaxon"
                       className="telegram_button"
                       target="_blank"
                       rel="noopener noreferrer">
-                      <FaTelegramPlane /> Telegram
+                      <FaTelegramPlane className="filtercars_icon" />
+                      <span id="aloqa">Telegram</span>
                     </a>
                   </div>
                 </div>

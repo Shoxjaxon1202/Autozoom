@@ -7,7 +7,7 @@
   padding-bottom: 50px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  .intro_wrapper{
+  .intro_wrapper {
     max-width: 1350px;
     margin: auto;
   }
@@ -83,4 +83,97 @@
 
 .mySwiper .swiper-pagination-bullet {
   background-color: #00e0e0;
+}
+
+@media screen and (max-width: 1350px) {
+  .intro-container .intro_wrapper {
+    max-width: 95%; /* Max-widthni kamaytirish */
+    padding: 0 15px;
+  }
+
+  .intro-container .intro-header h1 {
+    font-size: 1.8rem; /* H1 shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header h2 {
+    font-size: 1.3rem; /* H2 shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header p {
+    font-size: 0.95rem; /* P shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header .catalog-button {
+    font-size: 0.9rem; /* Tugma shriftini kichiklashtirish */
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .intro-container {
+    padding-top: 70px; /* Yuqoridan paddingni kamaytirish */
+    padding-bottom: 30px; /* Pastdan paddingni kamaytirish */
+  }
+
+  .intro-container .intro-header h1 {
+    font-size: 1.6rem; /* H1 shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header h2 {
+    font-size: 1.2rem; /* H2 shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header p {
+    font-size: 0.9rem; /* P shriftini kichiklashtirish */
+  }
+
+  .swiper .swiper-slide {
+    font-size: 16px; /* Swiper shriftini kichiklashtirish */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .intro-container .intro_wrapper {
+    padding: 0 10px; /* Yon tomonlar uchun padding */
+  }
+
+  .intro-container .intro-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .intro-container .intro-header h2 {
+    font-size: 1rem;
+  }
+
+  .intro-container .intro-header .catalog-button {
+    padding: 8px 15px; /* Tugma hajmini kamaytirish */
+  }
+
+  .swiper .swiper-slide img {
+    height: auto; /* Rasmni o'zgaruvchan balandlik */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .intro-container {
+    padding-top: 50px; /* Kichik ekranda paddingni kamaytirish */
+    padding-bottom: 20px;
+  }
+
+  .intro-container .intro-header h1,
+  .intro-container .intro-header h2 {
+    font-size: 1.2rem; /* H1 va H2 shriftlarini kichiklashtirish */
+  }
+
+  .intro-container .intro-header p {
+    font-size: 0.85rem; /* P shriftini kichiklashtirish */
+  }
+
+  .intro-container .intro-header .catalog-button {
+    font-size: 0.8rem;
+    padding: 5px 10px; /* Kichikroq tugma */
+  }
+
+  .swiper .swiper-slide {
+    font-size: 14px; /* Swiper shriftini kichiklashtirish */
+  }
 }
