@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 70%;
     max-width: 1200px;
     max-height: 100px;
 
@@ -249,4 +249,9 @@
   .swiper-slide {
     width: 100% !important;
   }
+}
+
+.navbar__flag {
+  color: #fff;
+  cursor: pointer;
 }

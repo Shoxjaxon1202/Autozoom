@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.scss";
 
@@ -86,20 +86,21 @@ const Navbar = ({ handleBrand }) => {
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setIsModalOpen(false);
-    }, 1500); // 300 ms kechikish qo'shildi
+    }, 1500);
   };
 
   return (
     <header className="navbar">
       <div className="navbar__container">
         <div className="navbar__language-switch">
-          <span className="navbar__flag">🇬🇧</span>
-          <span className="navbar__flag">🇷🇺</span>
+          {/* Statik til o'zgartirish */}
+          <span className="navbar__flag">EN</span>
+          <span className="navbar__flag">RU</span>
         </div>
         <div className="navbar__search">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search..." // Statik placeholder
             className="navbar__search-input"
           />
           <i className="navbar__search-icon">&#128269;</i>
@@ -119,7 +120,7 @@ const Navbar = ({ handleBrand }) => {
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
               }>
-              CARS
+              Cars
             </NavLink>
             <NavLink
               onMouseEnter={handleMouseEnter}
@@ -128,12 +129,12 @@ const Navbar = ({ handleBrand }) => {
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
               }>
-              BRAND
+              Brands
             </NavLink>
             {isModalOpen && (
               <div className="modal-overlay">
                 <div className="modal-content">
-                  <h3 className="modal-title">Select a Brand</h3>
+                  <h3 className="modal-title">Select Brand</h3>
                   <div className="brands-grid">
                     {brands.map((brand, index) => (
                       <NavLink
@@ -148,7 +149,7 @@ const Navbar = ({ handleBrand }) => {
                           alt={brand.alt}
                           className="brand-image"
                         />
-                        <span>Rent {brand.alt} Emirates</span>
+                        <span>Rent {brand.alt}</span>{" "}
                       </NavLink>
                     ))}
                   </div>
@@ -161,40 +162,29 @@ const Navbar = ({ handleBrand }) => {
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
               }>
-              SERVICES
+              Services
             </NavLink>
             <NavLink
-              id="aboutus"
               to="/about"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
               }>
-              <span>About</span> <span> US</span>
+              About Us
             </NavLink>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
               }>
-              CONTACTS
+              Contact
             </NavLink>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
-              BLOG
-            </NavLink>
-            <a id="telefon" href="tel:+998990000441" className="navbar__phone">
-              +998 (99) 000 04 41
-            </a>
           </nav>
+          <div className="navbar__mobile-menu">
+            <div className="navbar__menu-icon" onClick={toggleMobileMenu}>
+              &#9776;
+            </div>
+          </div>
         </ul>
-        <div className="navbar__burger" onClick={toggleMobileMenu}>
-          <div className="navbar__burger-line"></div>
-          <div className="navbar__burger-line"></div>
-          <div className="navbar__burger-line"></div>
-        </div>
       </div>
     </header>
   );
