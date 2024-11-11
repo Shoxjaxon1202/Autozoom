@@ -44,14 +44,14 @@ const Footer = () => {
               </NavLink>
             </div>
             <div className="footer__contact">
-              <NavLink className={"footer__link"} to={"/cars"}>
+              <NavLink className={"footer__link"} to={"/blog"}>
                 BLOG
               </NavLink>{" "}
-              <NavLink className={"footer__link"} to={"/cars"}>
+              <NavLink className={"footer__link"} to={"/services"}>
                 SERVICES
               </NavLink>{" "}
               <div className="footer__linkc">
-                <NavLink className={"footer__link"} to={"/cars"}>
+                <NavLink className={"footer__link"} to={"/contact"}>
                   CONTACTS
                 </NavLink>
                 <p className="footer__text">
