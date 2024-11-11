@@ -8,7 +8,12 @@ import Faq from "../components/UI/Faq/Faq";
 import Follow from "../components/UI/Follow/Follow";
 import Brand from "./Brand";
 
-const Home = ({ handleAllCategory, handleBrand }) => {
+const Home = ({
+  handleAllCategory,
+  handleBrand,
+  handleLocation,
+  handleCity,
+}) => {
   return (
     <div className="home">
       <Intro />
@@ -16,7 +21,7 @@ const Home = ({ handleAllCategory, handleBrand }) => {
       <Cars handleAllCategory={handleAllCategory} />
       <Services />
       <Faq />
-      <Follow />
+      <Follow handleLocation={handleLocation} handleCity={handleCity} />
     </div>
   );
 };

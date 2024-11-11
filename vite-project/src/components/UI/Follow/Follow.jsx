@@ -16,8 +16,22 @@ import follow7 from "../../../assets/img/follow7.webp";
 import follow8 from "../../../assets/img/follow8.webp";
 import follow9 from "../../../assets/img/follow9.webp";
 import follow10 from "../../../assets/img/follow10.webp";
+import useData from "../../../Pages/useData";
 
-const Follow = () => {
+const Follow = ({ handleLocation, handleCity }) => {
+  const { data, loading, error } = useData(
+    "https://realauto.limsa.uz/api/cars"
+  );
+
+  const uniqueLocations = [
+    ...new Set(data?.data?.map((item) => item?.location?.name)),
+  ];
+  const uniqueCities = [
+    ...new Set(data?.data?.map((item) => item?.city?.name)),
+  ];
+
+  console.log(uniqueLocations);
+  console.log(uniqueCities);
   const settings = {
     dots: true,
     infinite: false,
@@ -121,54 +135,31 @@ const Follow = () => {
         <div className="follow__bottom">
           <div className="follow__first">
             <h1 className="follow__title">LOCATION</h1>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Beaches
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Al Mamzar
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Art Foundation
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Al-Rahba
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Corniche
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Saadiyat Island
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Burj-khalifa
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Marina
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Deira
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Jumeirah
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Burj al-arab
-            </NavLink>
+            {uniqueLocations?.map((item) => (
+              <NavLink
+                onClick={() => {
+                  handleLocation(item);
+                }}
+                className={"follow__link"}
+                to={"/cars"}
+              >
+                {item}
+              </NavLink>
+            ))}
           </div>
           <div className="follow__second">
             <h1 className="follow__title">CITY</h1>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Fujairah
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Sharjah
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Abu Dhabi
-            </NavLink>
-            <NavLink className={"follow__link"} to={"/cars"}>
-              Dubai
-            </NavLink>
+            {uniqueCities?.map((item) => (
+              <NavLink
+                onClick={() => {
+                  handleCity(item);
+                }}
+                className={"follow__link"}
+                to={"/cars"}
+              >
+                {item}
+              </NavLink>
+            ))}
           </div>
         </div>
       </div>

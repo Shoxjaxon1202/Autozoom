@@ -15,12 +15,20 @@ import LazyLoader from "./components/LazyLoader/LazyLoader";
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   const handleAllCategory = (category) => {
     setSelectedCategory(category);
   };
   const handleBrand = (brand) => {
     setSelectedBrand(brand);
+  };
+  const handleLocation = (location) => {
+    setSelectedLocation(location);
+  };
+  const handleCity = (City) => {
+    setSelectedCity(City);
   };
 
   const Home = lazy(() => import("./Pages/Home"));
@@ -47,6 +55,8 @@ function App() {
                   <Home
                     handleBrand={handleBrand}
                     handleAllCategory={handleAllCategory}
+                    handleLocation={handleLocation}
+                    handleCity={handleCity}
                   />
                 }
               />
@@ -56,6 +66,8 @@ function App() {
                   <Filter
                     selectedBrand={selectedBrand}
                     selectedCategory={selectedCategory}
+                    selectedLocation={selectedLocation}
+                    selectedCity={selectedCity}
                   />
                 }
               />
