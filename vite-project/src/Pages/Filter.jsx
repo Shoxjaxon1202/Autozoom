@@ -4,11 +4,13 @@ import axios from "axios";
 import { NavLink, useParams } from "react-router-dom";
 import { FaTelegram, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 
-const CarsPage = ({ selectedCategory, selectedBrand }) => {
+const CarsPage = ({ selectedCategory }) => {
   const API = `https://realauto.limsa.uz/api/cars`;
   const [base, setBase] = useState([]);
   const [model, setModel] = useState("");
   const [filteredCars, setFilteredCars] = useState([]);
+  // const [filteredCategories, setFilteredCategories] = useState([]);
+  // const [filteredBrand, setFilteredBrand] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const params = useParams();
@@ -105,16 +107,16 @@ const CarsPage = ({ selectedCategory, selectedBrand }) => {
     }
   }, [selectedCategory, base]);
 
-  useEffect(() => {
-    if (selectedBrand) {
-      const filtered = base.filter(
-        (car) => car?.brand?.title === selectedBrand
-      );
-      setFilteredCars(filtered);
-    } else {
-      setFilteredCars(base);
-    }
-  }, [selectedBrand, base]);
+  // useEffect(() => {
+  //   if (selectedBrand) {
+  //     const filtered = base.filter(
+  //       (car) => car?.brand?.title === selectedBrand
+  //     );
+  //     setFilteredBrand(filtered);
+  //   } else {
+  //     setFilteredBrand(base);
+  //   }
+  // }, [selectedBrand, base]);
 
   return (
     <section className="filtercars">
@@ -193,8 +195,8 @@ const CarsPage = ({ selectedCategory, selectedBrand }) => {
               </div>
             ) : error ? (
               <p className="error-message">{error}</p>
-            ) : filteredCars.length > 0 ? (
-              filteredCars.map((item) => (
+            ) : filteredCars.length ? (
+              filteredCars?.map((item) => (
                 <div key={item?.id} className="filter_card">
                   <NavLink to={`/carsinfo/${item?.id}`} key={item.id}>
                     <div className="car_image">
@@ -239,7 +241,7 @@ const CarsPage = ({ selectedCategory, selectedBrand }) => {
               <div className="not-found">
                 <h1>404</h1>
                 <p>Mashinalar topilmadi</p>
-                {/* <a href="/cars">Boshqatdan qidirish</a> */}
+                <a href="/cars">Boshqatdan qidirish</a>
               </div>
             )}
           </div>
