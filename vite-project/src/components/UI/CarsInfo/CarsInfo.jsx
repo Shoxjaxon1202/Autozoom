@@ -114,8 +114,6 @@ const CarsInfo = () => {
       });
   };
 
-  console.log(item);
-
   return (
     <div className="carsinfo">
       <div className="carsinfo__wrapper">
@@ -130,7 +128,22 @@ const CarsInfo = () => {
                 spaceBetween={10}
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}>
+                modules={[FreeMode, Navigation, Thumbs]}
+                loop={true}
+                breakpoints={{
+                  1200: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                  },
+                  768: {
+                    slidesPerView: 1,
+                    spaceBetween: 8,
+                  },
+                  500: {
+                    slidesPerView: 1,
+                    spaceBetween: 6,
+                  },
+                }}>
                 {item?.car_images.map((img, index) => (
                   <SwiperSlide key={index}>
                     <img
@@ -145,12 +158,26 @@ const CarsInfo = () => {
               <Swiper
                 onSwiper={setThumbsSwiper}
                 spaceBetween={10}
-                slidesPerView={3}
+                slidesPerView={5} // Adjust the default number of thumbnails shown
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Thumbs]}
                 loop={true}
-                className="carsinfo__thumb-swiper">
+                className="carsinfo__thumb-swiper"
+                breakpoints={{
+                  1200: {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 8,
+                  },
+                  500: {
+                    slidesPerView: 2,
+                    spaceBetween: 6,
+                  },
+                }}>
                 {item?.car_images.map((img, index) => (
                   <SwiperSlide key={index}>
                     <img

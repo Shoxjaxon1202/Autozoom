@@ -39,7 +39,6 @@ const Cars = ({ handleAllCategory }) => {
   // Xatolik yuz berganda
   if (error) return <div>Error: {error.message}</div>;
 
-
   return (
     <div className="cars">
       <div className="cars_wrapper">
@@ -53,9 +52,12 @@ const Cars = ({ handleAllCategory }) => {
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
-                <NavLink onClick={()=> {
-                  handleAllCategory(category)
-                }} to={"/cars"} className="cars_top_right">
+                <NavLink
+                  onClick={() => {
+                    handleAllCategory(category);
+                  }}
+                  to={"/cars"}
+                  className="cars_top_right">
                   <h4>SEE ALL</h4>
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
