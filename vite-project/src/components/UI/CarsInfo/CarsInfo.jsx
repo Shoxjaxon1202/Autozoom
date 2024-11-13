@@ -129,21 +129,7 @@ const CarsInfo = () => {
                 navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Navigation, Thumbs]}
-                loop={true}
-                breakpoints={{
-                  1200: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                  },
-                  768: {
-                    slidesPerView: 1,
-                    spaceBetween: 8,
-                  },
-                  500: {
-                    slidesPerView: 1,
-                    spaceBetween: 6,
-                  },
-                }}>
+                loop={true}>
                 {item?.car_images.map((img, index) => (
                   <SwiperSlide key={index}>
                     <img
@@ -165,16 +151,16 @@ const CarsInfo = () => {
                 loop={true}
                 className="carsinfo__thumb-swiper"
                 breakpoints={{
-                  1200: {
-                    slidesPerView: 5,
+                  1000: {
+                    slidesPerView: 3,
                     spaceBetween: 10,
                   },
                   768: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 8,
                   },
                   500: {
-                    slidesPerView: 2,
+                    slidesPerView: 1,
                     spaceBetween: 6,
                   },
                 }}>
@@ -279,21 +265,21 @@ const CarsInfo = () => {
               <a target="_blank" href="https://w.me/1234567890">
                 <button className="carsinfo__contact-button carsinfo__contact-button--whatsapp">
                   <FaWhatsapp />
-                  WhatsApp
+                  <span> WhatsApp</span>
                 </button>
               </a>
 
               <a target="_blank" href="https://t.me/abdusalimov_shoxjaxon">
                 <button className="carsinfo__contact-button carsinfo__contact-button--telegram">
                   <SiTelegram />
-                  Telegram
+                  <span> Telegram</span>
                 </button>
               </a>
 
               <a href="tel:+998900998210">
                 <button className="carsinfo__contact-button carsinfo__contact-button--call">
                   <FaPhoneAlt />
-                  Call
+                  <span>Call</span>
                 </button>
               </a>
             </div>
@@ -329,6 +315,7 @@ const CarsInfo = () => {
                 onChange={handleChange}
               />
               <input
+                required
                 placeholder="Details"
                 type="text"
                 name="details"
