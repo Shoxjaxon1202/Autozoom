@@ -1,7 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./navbar.scss";
-
 import rasm from "../../assets/img/logo.png";
 
 const Navbar = ({ handleBrand }) => {
@@ -72,117 +71,132 @@ const Navbar = ({ handleBrand }) => {
     },
   ];
 
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const handleMouseEnter = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-    }
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     setIsModalOpen(true);
   };
 
   const handleMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setIsModalOpen(false);
-    }, 1500);
+    closeTimeoutRef.current = setTimeout(() => setIsModalOpen(false), 1500);
   };
 
   return (
     <header className="navbar">
       <div className="navbar__container">
         <div className="navbar__language-switch">
-          {/* Statik til o'zgartirish */}
           <span className="navbar__flag">EN</span>
           <span className="navbar__flag">RU</span>
         </div>
         <div className="navbar__search">
           <input
             type="text"
-            placeholder="Search..." // Statik placeholder
+            placeholder="Search..."
             className="navbar__search-input"
           />
           <i className="navbar__search-icon">&#128269;</i>
         </div>
         <ul className="navbar_list">
-          <NavLink to="/">
-            <div className="navbar__logo">
-              <img src={rasm} alt="Logo" className="navbar_img" />
-            </div>
+          <NavLink to="/" className="navbar__logo">
+            <img src={rasm} alt="Logo" className="navbar_img" />
           </NavLink>
           <nav
             className={`navbar__menu ${
               isMobileMenuOpen ? "navbar__menu--open" : ""
-            }`}>
+            }`}
+          >
             <NavLink
               to="/cars"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
+              }
+            >
               Cars
             </NavLink>
             <NavLink
+              to="/brands"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              to="/brands"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
+              }
+            >
               Brands
             </NavLink>
             {isModalOpen && (
-              <div className="modal-overlay">
+              <div
+                className="modal-overlay"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 <div className="modal-content">
                   <h3 className="modal-title">Select Brand</h3>
                   <div className="brands-grid">
                     {brands.map((brand, index) => (
                       <NavLink
-                        to={"/cars"}
-                        onClick={() => {
-                          handleBrand(brand.alt);
-                        }}
+                        to="/cars"
                         key={index}
-                        className="brand-item">
+                        onClick={() => handleBrand(brand.alt)}
+                        className="brand-item"
+                      >
                         <img
                           src={brand.src}
                           alt={brand.alt}
                           className="brand-image"
                         />
-                        <span>Rent {brand.alt}</span>{" "}
+                        <span>Rent {brand.alt}</span>
                       </NavLink>
                     ))}
                   </div>
                 </div>
               </div>
             )}
-
             <NavLink
               to="/services"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
+              }
+            >
               Services
             </NavLink>
             <NavLink
               to="/about"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
+              }
+            >
               About Us
             </NavLink>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
                 isActive ? "navbar__link navbar__link--active" : "navbar__link"
-              }>
+              }
+            >
               Contact
             </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? "navbar__link navbar__link--active" : "navbar__link"
+              }
+            >
+              Blog
+            </NavLink>
           </nav>
-          <div className="navbar__mobile-menu">
-            <div className="navbar__menu-icon" onClick={toggleMobileMenu}>
-              &#9776;
-            </div>
+          <div className="navbar__mobile-menu" onClick={toggleMobileMenu}>
+            <div className="navbar__menu-icon">&#9776;</div>
           </div>
         </ul>
       </div>
