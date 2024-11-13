@@ -31,8 +31,11 @@ const Intro = () => {
           loop={true}
           slidesPerView={3}
           spaceBetween={30}
+          centeredSlides={true}  // Markazdagi slide ni kattalashtirish
           pagination={{ clickable: true }}
-          className="mySwiper">
+          className="mySwiper"
+          slideToClickedSlide={true}  // Slaydni bosganda markazga kelishi
+        >
           <SwiperSlide>
             <img src={car1} alt="Car 1" />
           </SwiperSlide>
