@@ -5,6 +5,8 @@
   background: linear-gradient(0deg, #343744 0.26%, #343744 73.51%, #24242400);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+
+
   .intro-header {
     margin-bottom: 40px;
 
@@ -64,7 +66,7 @@
 
     // Markazdagi slaydni kattalashtirish
     &.swiper-slide-active img {
-      transform: scale(1.2); // Aktiv slaydni kattalashtiramiz
+      transform: scale(1); // Aktiv slaydni kattalashtiramiz
     }
 
     // Yonidagi slaydlarga kichikroq o'lcham berish

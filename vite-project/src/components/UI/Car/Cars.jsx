@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
 import useData from "../../../Pages/useData";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 import "./cars.scss";
 
 const Cars = ({ handleAllCategory }) => {
+  const { t } = useTranslation(); // Initialize the translation hook
   const [carsByCategory, setCarsByCategory] = useState({});
 
-  const carCategories = [
-    "Budget cars Rental Emirates",
-    "Sports cars Rental Emirates",
-    "Hyper Cars Rental Emirates",
-    "Luxury Cars Rental Emirates",
-    "Suv Cars Renal Emirates",
-    "Cabriolet cars rental Emirates",
-  ];
+  // Memoize the car categories to prevent infinite loop
+  const carCategories = useMemo(
+    () => [
+      t("budgetCars"),
+      t("sportsCars"),
+      t("hyperCars"),
+      t("luxuryCars"),
+      t("suvCars"),
+      t("cabrioletCars"),
+    ],
+    [t]
+  ); // Only re-run when `t` changes
 
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/cars"
@@ -32,20 +38,23 @@ const Cars = ({ handleAllCategory }) => {
       });
       setCarsByCategory(filteredCars);
     }
-  }, [data]);
+  }, [data, carCategories]); // Only re-run when `data` or `carCategories` change
 
-  // Yuklanayotgan holatda
-  if (loading) return <div>Loading...</div>;
-  // Xatolik yuz berganda
-  if (error) return <div>Error: {error.message}</div>;
-
+  // Loading and error states
+  if (loading) return <div>{t("loading")}</div>; // "loading" text will be translated
+  if (error)
+    return (
+      <div>
+        {t("error")}: {error.message}
+      </div>
+    ); // "error" text will be translated
 
   return (
     <div className="cars">
       <div className="cars_wrapper">
         {carCategories.map((category) => {
           const cars = carsByCategory[category] || [];
-          const categoryName = cars.length > 0 ? category : "Cars";
+          const categoryName = cars.length > 0 ? category : t("noCars");
 
           return (
             <div key={category} className="cars_section">
@@ -53,10 +62,12 @@ const Cars = ({ handleAllCategory }) => {
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
-                <NavLink onClick={()=> {
-                  handleAllCategory(category)
-                }} to={"/cars"} className="cars_top_right">
-                  <h4>SEE ALL</h4>
+                <NavLink
+                  onClick={() => handleAllCategory(category)}
+                  to={"/cars"}
+                  className="cars_top_right"
+                >
+                  <h4>{t("seeAll")}</h4> {/* "SEE ALL" will be translated */}
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
               </div>

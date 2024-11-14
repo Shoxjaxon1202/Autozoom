@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { lazy, Suspense, useState } from "react";
 import LazyLoader from "./components/LazyLoader/LazyLoader";
+import "./i18n";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);

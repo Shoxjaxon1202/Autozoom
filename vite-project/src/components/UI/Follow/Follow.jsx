@@ -17,8 +17,10 @@ import follow8 from "../../../assets/img/follow8.webp";
 import follow9 from "../../../assets/img/follow9.webp";
 import follow10 from "../../../assets/img/follow10.webp";
 import useData from "../../../Pages/useData";
+import { useTranslation } from "react-i18next";
 
 const Follow = ({ handleLocation, handleCity }) => {
+  const { t } = useTranslation();
   const { data, loading, error } = useData(
     "https://realauto.limsa.uz/api/cars"
   );
@@ -30,8 +32,6 @@ const Follow = ({ handleLocation, handleCity }) => {
     ...new Set(data?.data?.map((item) => item?.city?.name)),
   ];
 
-  console.log(uniqueLocations);
-  console.log(uniqueCities);
   const settings = {
     dots: true,
     infinite: false,
@@ -72,90 +72,65 @@ const Follow = ({ handleLocation, handleCity }) => {
       },
     ],
   };
+
   return (
     <div className="follow">
       <div className="follow__wrapper">
         <div className="follow__top">
-          <h1 className="follow__title">FOLLOW US ON INSTAGRAM</h1>
+          <h1 className="follow__title">{t("follow_title")}</h1>
           <div className="follow__swipercon">
             <Slider className="follow__swiper" {...settings}>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow1} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow2} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow3} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow4} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow5} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow6} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow7} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow8} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow9} alt="" />
-                </Zoom>
-              </div>
-              <div className="follow__slide">
-                <Zoom>
-                  <img className="follow__img" src={follow10} alt="" />
-                </Zoom>
-              </div>
+              {[
+                follow1,
+                follow2,
+                follow3,
+                follow4,
+                follow5,
+                follow6,
+                follow7,
+                follow8,
+                follow9,
+                follow10,
+              ].map((img, index) => (
+                <div className="follow__slide" key={index}>
+                  <Zoom>
+                    <img
+                      className="follow__img"
+                      src={img}
+                      alt={`follow${index + 1}`}
+                    />
+                  </Zoom>
+                </div>
+              ))}
             </Slider>
           </div>
         </div>
         <div className="follow__bottom">
           <div className="follow__first">
-            <h1 className="follow__title">LOCATION</h1>
-            {uniqueLocations?.map((item) => (
+            <h1 className="follow__title">{t("location_title")}</h1>
+            {uniqueLocations?.map((item, index) => (
               <NavLink
+                key={index}
                 onClick={() => {
                   handleLocation(item);
                 }}
-                className={"follow__link"}
-                to={"/cars"}
+                className="follow__link"
+                to="/cars"
               >
                 {item}
               </NavLink>
             ))}
           </div>
           <div className="follow__second">
-            <h1 className="follow__title">CITY</h1>
-            {uniqueCities?.map((item) => (
+            <h1 className="follow__title">{t("city_title")}</h1>
+            {uniqueCities?.map((item, index) => (
               <NavLink
+                key={index}
                 onClick={() => {
                   handleCity(item);
                 }}
-                className={"follow__link"}
-                to={"/cars"}
+                className="follow__link"
+                to="/cars"
               >
                 {item}
               </NavLink>

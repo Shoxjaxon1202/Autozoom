@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "./intro.scss";
 
 import car1 from "../../../assets/img/image.png";
@@ -10,19 +11,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { NavLink } from "react-router-dom";
 
 const Intro = () => {
+  const { t } = useTranslation();  // Hook to get the translation function
+
   return (
     <div className="intro-container">
       <div className="intro_wrapper">
         <div className="intro-header">
-          <h1>TOP LUXURY CAR RENTAL EMIRATES</h1>
-          <h2>№1</h2>
-          <p>
-            Best sports car & supercar rental Emirates, Exclusive offers on
-            luxury car rental Emirates Cheap price
-          </p>
+          <h1>{t("intro.header")}</h1>
+          <h2>{t("intro.rank")}</h2>
+          <p>{t("intro.description")}</p>
           <NavLink to={"/cars"}>
             <button className="catalog-button">
-              RENT A CAR EMIRATES CATALOG
+              {t("intro.button")}
             </button>
           </NavLink>
         </div>
@@ -31,10 +31,10 @@ const Intro = () => {
           loop={true}
           slidesPerView={3}
           spaceBetween={30}
-          centeredSlides={true}  // Markazdagi slide ni kattalashtirish
+          centeredSlides={true}
           pagination={{ clickable: true }}
           className="mySwiper"
-          slideToClickedSlide={true}  // Slaydni bosganda markazga kelishi
+          slideToClickedSlide={true}
         >
           <SwiperSlide>
             <img src={car1} alt="Car 1" />
