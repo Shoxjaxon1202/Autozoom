@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/brand.scss";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { NavLink } from "react-router-dom";
 
 const Brand = ({ handleBrand }) => {
@@ -87,7 +87,7 @@ const Brand = ({ handleBrand }) => {
           autoplay={{
             delay: 3000,
           }}
-          modules={[Autoplay, Pagination]}
+          modules={[Autoplay, Pagination, Navigation]}
           breakpoints={{
             1024: {
               slidesPerView: 6,
