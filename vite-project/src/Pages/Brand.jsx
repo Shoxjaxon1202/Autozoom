@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";  // Import useTranslation
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -7,6 +8,8 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { NavLink } from "react-router-dom";
 
 const Brand = ({ handleBrand }) => {
+  const { t } = useTranslation();  // Hook to get the translation function
+
   const brands = [
     {
       src: "https://realauto.limsa.uz/api/uploads/images/d714a6ff-1959-4189-89f7-957853352e77.png",
@@ -73,7 +76,7 @@ const Brand = ({ handleBrand }) => {
   return (
     <div className="brand-slider-container">
       <div className="brand_wrapper">
-        <h2 className="brand-title">Brands</h2>
+        <h2 className="brand-title">{t("brand.title")}</h2>  {/* Translated brand title */}
         <Swiper
           loop={true}
           slidesPerView={6}
@@ -107,7 +110,7 @@ const Brand = ({ handleBrand }) => {
                 className="brand-card"
                 onClick={() => handleBrand(brand.alt)}>
                 <img src={brand.src} alt={`Brand ${brand.alt}`} />
-                <h3 className="brand-card-title">{brand.alt}</h3>
+                <h3 className="brand-card-title">{brand.alt}</h3> {/* Brand name */}
               </NavLink>
             </SwiperSlide>
           ))}

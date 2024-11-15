@@ -3,24 +3,22 @@ import "../../../styles/services.scss";
 import serv1 from "../../../assets/img/serv1.jpeg";
 import serv2 from "../../../assets/img/serv2.jpeg";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Serv = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="serv">
       <div className="serv__wrapper">
-        <h1 className="serv__title">SERVICES</h1>
+        <h1 className="serv__title">{t("servicesTitle")}</h1>
         <div className="serv__cards">
           <div className="serv__card">
-            <img className="serv__img" src={serv1} alt="serv__img" />
-            <h2 className="serv__card__title">
-              Ride a buggy in Dubai and have fun
-            </h2>
-            <p className="serv__text">
-              Experience the thrill of a dune buggy tour in Dubai with us. We
-              offer free hotel pick-up & drop-off service. Book now
-            </p>
-            <NavLink className={"serv__link"} to={"/services1"}>
-              <h4 className="serv__btn">LEARN MORE</h4>
+            <img className="serv__img" src={serv1} alt="service image 1" />
+            <h2 className="serv__card__title">{t("rideBuggyTitle")}</h2>
+            <p className="serv__text">{t("rideBuggyDescription")}</p>
+            <NavLink className="serv__link" to="/services1">
+              <h4 className="serv__btn">{t("learnMore")}</h4>
               <svg
                 className="serv__icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,16 +32,11 @@ const Serv = () => {
             </NavLink>
           </div>
           <div className="serv__card">
-            <img className="serv__img" src={serv2} alt="serv__img" />
-            <h2 className="serv__card__title">
-              Photoshoot with luxury car rental Dubai
-            </h2>
-            <p className="serv__text">
-              Professional car photoshoot as an additional type of service at
-              Terra Car Rental
-            </p>
-            <NavLink className={"serv__link"} to={"/services2"}>
-              <h4 className="serv__btn">LEARN MORE</h4>
+            <img className="serv__img" src={serv2} alt="service image 2" />
+            <h2 className="serv__card__title">{t("photoshootTitle")}</h2>
+            <p className="serv__text">{t("photoshootDescription")}</p>
+            <NavLink className="serv__link" to="/services2">
+              <h4 className="serv__btn">{t("learnMore")}</h4>
               <svg
                 className="serv__icon"
                 xmlns="http://www.w3.org/2000/svg"

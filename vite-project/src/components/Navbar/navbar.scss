@@ -18,8 +18,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1250px;
     max-height: 100px;
 
     .brand-list-container {
@@ -120,10 +120,10 @@
 
   &__menu {
     display: flex;
-    gap: 20px; // Katta ekranlarda menyu ko'rinadi
+    gap: 20px;
 
     &--open {
-      display: block; // Menyu faqat burger ikonkasi bosilganda ko'rsatiladi
+      display: block;
       position: absolute;
       top: 60px;
       left: 0;
@@ -132,7 +132,7 @@
       padding: 10px;
       flex-direction: column;
       align-items: center;
-      z-index: 100; // Menyu yuqoriga chiqadi
+      z-index: 100;
     }
   }
 
@@ -153,7 +153,7 @@
   }
 
   &__burger {
-    display: none; // Kichik ekranlarda faqat burger ikonkasi ko'rsatiladi
+    display: none;
     cursor: pointer;
     flex-direction: column;
     gap: 4px;
@@ -171,7 +171,6 @@
     align-items: center;
   }
 
-  // Responsive Design
   @media (max-width: 1250px) {
     &__container {
       width: 100%;
@@ -195,11 +194,11 @@
 
   @media (max-width: 768px) {
     &__menu {
-      display: none; // Kichik ekranlarda menyuni yashirish
+      display: none;
     }
 
     &__burger {
-      display: flex; // Burger ikonkasini faqat kichik ekranlarda ko'rsatish
+      display: flex;
     }
 
     .navbar_list {
@@ -234,16 +233,41 @@
     display: flex;
     align-items: center !important;
     justify-content: space-between;
+    // gap: 100px;
 
     nav {
+      margin-left: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
   }
+
+  .navbar__flag {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: border-color 0.3s;
+
+    &.en {
+      background-image: url("../../assets/img/flag_en.png");
+    }
+
+    &.ru {
+      background-image: url("../../assets/img/flag_ru.png");
+    }
+
+    &.active {
+      border-color: #ffffff;
+    }
+  }
 }
 
-/* Swiper va boshqa kutubxonalarning maxsus stillari */
+/* Swiper-specific styles */
 @media screen and (max-width: 1000px) {
   .swiper-container {
     width: 100% !important;
@@ -253,8 +277,4 @@
     width: 100% !important;
   }
 }
-
-.navbar__flag {
-  color: #fff;
-  cursor: pointer;
-}
+ 

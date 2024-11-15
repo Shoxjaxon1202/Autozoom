@@ -3,62 +3,59 @@ import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
 import useData from "../../../Pages/useData";
-
+import { useTranslation } from "react-i18next";
 import "./cars.scss";
 
 const Cars = ({ handleAllCategory }) => {
   const [carsByCategory, setCarsByCategory] = useState({});
+  const { t, i18n } = useTranslation();
 
   const carCategories = [
-    "Budget cars Rental Emirates",
-    "Sports cars Rental Emirates",
-    "Hyper Cars Rental Emirates",
-    "Luxury Cars Rental Emirates",
-    "Suv Cars Renal Emirates",
-    "Cabriolet cars rental Emirates",
+    { en: "Budget cars Rental Emirates", ru: "Бюджетные автомобили аренда" },
+    { en: "Sports cars Rental Emirates", ru: "Спортивные автомобили аренда" },
+    { en: "Hyper Cars Rental Emirates", ru: "Гиперкары аренда" },
+    { en: "Luxury Cars Rental Emirates", ru: "Роскошные автомобили аренда" },
+    { en: "Suv Cars Renal Emirates", ru: "Внедорожники аренда" },
+    { en: "Cabriolet cars rental Emirates", ru: "Кабриолеты аренда" },
   ];
 
-  const { data, loading, error } = useData(
-    "https://realauto.limsa.uz/api/cars"
-  );
+  const { data, loading, error } = useData("https://realauto.limsa.uz/api/cars");
 
   useEffect(() => {
     if (data) {
       const filteredCars = {};
       carCategories.forEach((category) => {
-        filteredCars[category] = data.data.filter(
-          (car) => car?.category?.name_en === category
+        const categoryName = category[i18n.language] || category.en;
+        filteredCars[categoryName] = data.data.filter(
+          (car) => car?.category?.name_en === category.en
         );
       });
       setCarsByCategory(filteredCars);
     }
-  }, [data]);
+  }, [data, i18n.language]);
 
-  // Yuklanayotgan holatda
   if (loading) return <div>Loading...</div>;
-  // Xatolik yuz berganda
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="cars">
       <div className="cars_wrapper">
         {carCategories.map((category) => {
-          const cars = carsByCategory[category] || [];
-          const categoryName = cars.length > 0 ? category : "Cars";
+          const categoryName = category[i18n.language] || category.en;
+          const cars = carsByCategory[categoryName] || [];
 
           return (
-            <div key={category} className="cars_section">
+            <div key={categoryName} className="cars_section">
               <div className="cars_top">
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
                 <NavLink
-                  onClick={() => {
-                    handleAllCategory(category);
-                  }}
-                  to={"/cars"}
-                  className="cars_top_right">
-                  <h4>SEE ALL</h4>
+                  onClick={() => handleAllCategory(categoryName)}
+                  to="/cars"
+                  className="cars_top_right"
+                >
+                  <h4>{t("seeAll")}</h4>
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
               </div>

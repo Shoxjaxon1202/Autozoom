@@ -4,154 +4,47 @@ import serv11 from "../assets/img/serv11.jpeg";
 import serv12 from "../assets/img/serv12.jpeg";
 import serv13 from "../assets/img/serv13.jpeg";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Services1 = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="services">
       <div className="services__wrapper">
-        <h1 className="services__title">Ride a buggy in Dubai and have fun</h1>
+        <h1 className="services__title">{t("rideBuggyTitle")}</h1>
         <div className="services__cards">
-          <div className="services__card">
-            <img className="services__img" src={serv11} alt="services__img" />
-            <div className="services__desc">
-              <p className="services__text">BASIC</p>
-              <div className="services__price">
-                <p className="services__pricetext">1000</p>
-                <p className="services__text">one person</p>
+          {[1000, 2000, 3000].map((price, index) => (
+            <div className="services__card" key={index}>
+              <img
+                className="services__img"
+                src={[serv11, serv12, serv13][index]}
+                alt="service image"
+              />
+              <div className="services__desc">
+                <p className="services__text">{t("basicPackage")}</p>
+                <div className="services__price">
+                  <p className="services__pricetext">{price}</p>
+                  <p className="services__text">
+                    {t("person", { count: index + 1 })}
+                  </p>
+                </div>
+                <p className="services__text">{t("duneBuggyDescription")}</p>
+                <h2 className="services__title">{t("packageInclusions")}</h2>
+                <div className="services__illus">
+                  {["premiumTransfer", "duneBuggyRide", "falconShooting", "camel", "vipRoom", "foodAndBeverages"].map((item, idx) => (
+                    <div className="services__illu" key={idx}>
+                      <img src={galochka} alt="" className="services__icon" />
+                      <h4 className="services__title">{t(item)}</h4>
+                    </div>
+                  ))}
+                </div>
+                <NavLink to="tel:+998990000441" className="services__btn">
+                  {t("bookNow")}
+                </NavLink>
               </div>
-              <p className="services__text">
-                Dune buggies in Dubai Book your ride on the most exciting
-                adventure activity to hit the desert and later pamper your self
-                to a traditional Arabian hospitality.
-              </p>
-              <h2 className="services__title">Package Inclusions:</h2>
-              <div className="services__illus">
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Premium Transfer to camp</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">
-                    Dune Buggy riding 1.5 hours
-                  </h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Falcone shoting</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Camel</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">VIP room</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Fruits, Drinks, BBQ</h4>
-                </div>
-              </div>
-              <NavLink to={"tel:+998990000441"} className="services__btn">
-                BOOK NOW
-              </NavLink>
             </div>
-          </div>
-          <div className="services__card">
-            <img className="services__img" src={serv12} alt="services__img" />
-            <div className="services__desc">
-              <p className="services__text">BASIC</p>
-              <div className="services__price">
-                <p className="services__pricetext">2000</p>
-                <p className="services__text">two person</p>
-              </div>
-              <p className="services__text">
-                Dune buggies in Dubai Book your ride on the most exciting
-                adventure activity to hit the desert and later pamper your self
-                to a traditional Arabian hospitality.
-              </p>
-              <h2 className="services__title">Package Inclusions:</h2>
-              <div className="services__illus">
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Premium Transfer to camp</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">
-                    Dune Buggy riding 1.5 hours
-                  </h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Falcone shoting</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Camel</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">VIP room</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Fruits, Drinks, BBQ</h4>
-                </div>
-              </div>
-              <NavLink to={"tel:+998990000441"} className="services__btn">
-                BOOK NOW
-              </NavLink>
-            </div>
-          </div>
-          <div className="services__card">
-            <img className="services__img" src={serv13} alt="services__img" />
-            <div className="services__desc">
-              <p className="services__text">BASIC</p>
-              <div className="services__price">
-                <p className="services__pricetext">3000</p>
-                <p className="services__text">three person</p>
-              </div>
-              <p className="services__text">
-                Dune buggies in Dubai Book your ride on the most exciting
-                adventure activity to hit the desert and later pamper your self
-                to a traditional Arabian hospitality.
-              </p>
-              <h2 className="services__title">Package Inclusions:</h2>
-              <div className="services__illus">
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Premium Transfer to camp</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">
-                    Dune Buggy riding 1.5 hours
-                  </h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Falcone shoting</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Camel</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">VIP room</h4>
-                </div>
-                <div className="services__illu">
-                  <img src={galochka} alt="" className="services__icon" />
-                  <h4 className="services__title">Fruits, Drinks, BBQ</h4>
-                </div>
-              </div>
-              <NavLink to={"tel:+998990000441"} className="services__btn">
-                BOOK NOW
-              </NavLink>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
