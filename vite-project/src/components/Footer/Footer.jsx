@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "./navbar.scss";
+import "../../styles/footer.scss";
 import rasm from "../../assets/img/logo.png";
 import En from "../../assets/img/en.png"; // English flag image
 import Ru from "../../assets/img/ru.png"; // Russian flag image
