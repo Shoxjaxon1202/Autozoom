@@ -1,73 +1,61 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDropright } from "react-icons/io";
 import CarsSwiper from "./CarsSwiper";
 import { NavLink } from "react-router-dom";
 import useData from "../../../Pages/useData";
-import { useTranslation } from "react-i18next"; // Import useTranslation
-
+import { useTranslation } from "react-i18next";
 import "./cars.scss";
 
 const Cars = ({ handleAllCategory }) => {
-  const { t } = useTranslation(); // Initialize the translation hook
   const [carsByCategory, setCarsByCategory] = useState({});
+  const { t, i18n } = useTranslation();
 
-  // Memoize the car categories to prevent infinite loop
-  const carCategories = useMemo(
-    () => [
-      t("budgetCars"),
-      t("sportsCars"),
-      t("hyperCars"),
-      t("luxuryCars"),
-      t("suvCars"),
-      t("cabrioletCars"),
-    ],
-    [t]
-  ); // Only re-run when `t` changes
+  const carCategories = [
+    { en: "Budget cars Rental Emirates", ru: "Бюджетные автомобили аренда" },
+    { en: "Sports cars Rental Emirates", ru: "Спортивные автомобили аренда" },
+    { en: "Hyper Cars Rental Emirates", ru: "Гиперкары аренда" },
+    { en: "Luxury Cars Rental Emirates", ru: "Роскошные автомобили аренда" },
+    { en: "Suv Cars Renal Emirates", ru: "Внедорожники аренда" },
+    { en: "Cabriolet cars rental Emirates", ru: "Кабриолеты аренда" },
+  ];
 
-  const { data, loading, error } = useData(
-    "https://realauto.limsa.uz/api/cars"
-  );
+  const { data, loading, error } = useData("https://realauto.limsa.uz/api/cars");
 
   useEffect(() => {
     if (data) {
       const filteredCars = {};
       carCategories.forEach((category) => {
-        filteredCars[category] = data.data.filter(
-          (car) => car?.category?.name_en === category
+        const categoryName = category[i18n.language] || category.en;
+        filteredCars[categoryName] = data.data.filter(
+          (car) => car?.category?.name_en === category.en
         );
       });
       setCarsByCategory(filteredCars);
     }
-  }, [data, carCategories]); // Only re-run when `data` or `carCategories` change
+  }, [data, i18n.language]);
 
-  // Loading and error states
-  if (loading) return <div>{t("loading")}</div>; // "loading" text will be translated
-  if (error)
-    return (
-      <div>
-        {t("error")}: {error.message}
-      </div>
-    ); // "error" text will be translated
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="cars">
       <div className="cars_wrapper">
         {carCategories.map((category) => {
-          const cars = carsByCategory[category] || [];
-          const categoryName = cars.length > 0 ? category : t("noCars");
+          const categoryName = category[i18n.language] || category.en;
+          const cars = carsByCategory[categoryName] || [];
 
           return (
-            <div key={category} className="cars_section">
+            <div key={categoryName} className="cars_section">
               <div className="cars_top">
                 <div className="cars_top_left">
                   <h3 className="cars_title">{categoryName}</h3>
                 </div>
                 <NavLink
-                  onClick={() => handleAllCategory(category)}
-                  to={"/cars"}
+                  onClick={() => handleAllCategory(categoryName)}
+                  to="/cars"
                   className="cars_top_right"
                 >
-                  <h4>{t("seeAll")}</h4> {/* "SEE ALL" will be translated */}
+                  <h4>{t("seeAll")}</h4>
                   <IoIosArrowDropright className="cars_icon" />
                 </NavLink>
               </div>

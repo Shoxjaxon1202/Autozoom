@@ -1,14 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import "../styles/contact.scss";
 import { NavLink } from "react-router-dom";
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="contact">
       <div className="contact__wrapper">
         <div className="contact__top">
-          <h1 className="contact__title">HAVE ANY QUESTIONS?</h1>
-          <p className="contact__text">We will be glad to help</p>
+          <h1 className="contact__title">{t("contact.haveQuestions")}</h1>
+          <p className="contact__text">{t("contact.helpText")}</p>
         </div>
         <div className="contact__bottom">
           <div className="contact__location">
@@ -45,10 +48,8 @@ const Contact = () => {
               </svg>
             </div>
             <div className="contact__desc">
-              <h1 className="contact__title">Head office</h1>
-              <p className="contact__text">
-                Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates
-              </p>
+              <h1 className="contact__title">{t("contact.headOffice")}</h1>
+              <p className="contact__text">{t("contact.address")}</p>
               <NavLink className={"contact__link"} to={"tel:+998990000441"}>
                 +998 (99) 000 04 41
               </NavLink>

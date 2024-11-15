@@ -5,11 +5,8 @@ import "swiper/css/pagination";
 import "./carsswiper.scss";
 import { Pagination } from "swiper/modules";
 import { NavLink } from "react-router-dom";
-import { useTranslation } from "react-i18next"; // Import useTranslation
 
 export default function CarsSwiper({ cars }) {
-  const { t } = useTranslation();  // Initialize translation hook
-
   return (
     <Swiper
       slidesPerView={3}
@@ -36,9 +33,7 @@ export default function CarsSwiper({ cars }) {
               <h4 className="cars_subtitle2">AED {car?.price}0</h4>
               <p className="cars_text">/${car.price}0</p>
             </span>
-            <p className="cars_text">
-              {t("perDay")}: {car?.limitperday} {/* This text will be dynamically translated */}
-            </p>
+            <p className="cars_text">per day: {car?.limitperday}</p>
           </NavLink>
         </SwiperSlide>
       ))}

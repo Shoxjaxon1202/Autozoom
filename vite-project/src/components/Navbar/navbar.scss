@@ -18,8 +18,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 70%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1250px;
     max-height: 100px;
 
     .brand-list-container {
@@ -233,8 +233,10 @@
     display: flex;
     align-items: center !important;
     justify-content: space-between;
+    // gap: 100px;
 
     nav {
+      margin-left: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;

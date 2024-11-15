@@ -4,6 +4,10 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #1d1f2b;
 
+  &_wrapper{
+    max-width: 1250px;
+    margin: auto;
+  }
   &__title {
     font-size: 2.5rem;
     font-weight: bold;
@@ -30,7 +34,7 @@
   }
 
   &__image {
-    width: 120px;
+    width: 25%;
     height: 100%;
     object-fit: cover;
 

@@ -85,31 +85,70 @@
   "location_title": "LOCATION",
   "city_title": "CITY",
 
-  
-    "footer": {
-      "title": "LUXURY CAR RENTAL IN EMIRATES",
-      "description": "Rent sports and luxury cars directly without intermediaries. Rent a car in Dubai with Auto Zoom Car Rental - safety and driving pleasure",
-      "offerButton": "GET BEST OFFER",
-      "cars": "Cars",
-      "budgetCars": "Budget cars Rental Emirates",
-      "sportsCars": "Sports cars Rental Emirates",
-      "hyperCars": "Hyper Cars Rental Emirates",
-      "luxuryCars": "Luxury Cars Rental Emirates",
-      "suvCars": "SUV Cars Rental Emirates",
-      "cabrioletCars": "Cabriolet cars rental Emirates",
-      "blog": "BLOG",
-      "services": "SERVICES",
-      "contacts": "CONTACTS",
-      "address": "Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates",
-      "phone": "+998 99 000 0441",
-      "hours": "Working hours: 24/7",
-      "aboutUs": "ABOUT US",
-      "ourTeam": "Our Team",
-      "faq": "FAQ",
-      "followUs": "Follow Us",
-      "copyright": "© 2024 Terra Car Rental. United Arab Emirates.",
-      "terms": "Terms and Conditions"
+  "footer": {
+    "title": "LUXURY CAR RENTAL IN EMIRATES",
+    "description": "Rent sports and luxury cars directly without intermediaries. Rent a car in Dubai with Auto Zoom Car Rental - safety and driving pleasure",
+    "offerButton": "GET BEST OFFER",
+    "cars": "Cars",
+    "budgetCars": "Budget cars Rental Emirates",
+    "sportsCars": "Sports cars Rental Emirates",
+    "hyperCars": "Hyper Cars Rental Emirates",
+    "luxuryCars": "Luxury Cars Rental Emirates",
+    "suvCars": "SUV Cars Rental Emirates",
+    "cabrioletCars": "Cabriolet cars rental Emirates",
+    "blog": "BLOG",
+    "services": "SERVICES",
+    "contacts": "CONTACTS",
+    "address": "Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates",
+    "phone": "+998 99 000 0441",
+    "hours": "Working hours: 24/7",
+    "aboutUs": "ABOUT US",
+    "ourTeam": "Our Team",
+    "faq": "FAQ",
+    "followUs": "Follow Us",
+    "copyright": "© 2024 Terra Car Rental. United Arab Emirates.",
+    "terms": "Terms and Conditions",
+
+    "about": {
+      "title": "ABOUT US",
+      "welcomeTitle": "Welcome to Auto Zoom Car Rental Co LLC – Your Partner in Unforgettable Journeys in Dubai!",
+      "welcomeText": "In a world where every trip is an adventure, Auto Zoom Car Rental Co LLC offers you a unique car rental experience in the heart of Dubai.",
+      "whyTitle": "Why Auto Zoom?",
+      "elegantFleetTitle": "Elegant Car Fleet:",
+      "elegantFleetText": "We provide you the opportunity to choose from our luxurious car fleet – from sleek sedans to powerful SUVs. We have a vehicle to match your style and meet your needs.",
+      "worryFreeTitle": "Worry-Free Rental:",
+      "worryFreeText": "Our goal is to make your journey as comfortable as possible. Flexible rental terms, the option to hire with a driver, and a wide range of additional services – all for your convenience.",
+      "transparencyTitle": "Transparency and Trust:",
+      "transparencyText": "We value every customer, so our prices are honest and transparent. No hidden fees, no unexpected surprises. Trust us, and we will make your rental experience straightforward and clear.",
+      "serviceTitle": "Service at Your Level:",
+      "serviceText": "Our friendly and professional team is ready to bring your ideas to life. We aim not just to provide a car but to create a genuine automotive experience for you.",
+      "missionTitle": "Our Mission:",
+      "missionText": "Auto Zoom Car Rental Co LLC is created with one goal – to make every journey unforgettable. We strive to offer you not just a car but the key to new experiences and adventures.",
+      "contactTitle": "Contact Us:",
+      "contactText": "Trust the professionals – trust Auto Zoom Car Rental Co LLC. Get in touch with us today to start your exciting journey through Dubai in our stylish and reliable cars. Allow yourself to savor every moment of your trip."
     }
-  
-  
+  },
+
+  "contact": {
+    "haveQuestions": "HAVE ANY QUESTIONS?",
+    "helpText": "We will be glad to help",
+    "headOffice": "Head office",
+    "address": "Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates"
+  },
+
+  "blog": {
+    "title": "Blog",
+    "post1": {
+      "title": "Top 3 Destinations to Visit in Dubai in a Rental Car",
+      "description": "One of the main reasons to hire a car in Dubai is the quality of the UAE roads. According to the World Economic Forum, the Emirates belong to the top seven countries with the most exemplary road infrastructure."
+    },
+    "post2": {
+      "title": "Top 5 wonderful spots for a car photo session in Dubai",
+      "description": "There are so many wonderful things to do in Dubai, but when you rent a car your opportunities are nearly doubled. The number of places you will die to go to and make memorable pictures..."
+    },
+    "post3": {
+      "title": "Top 5 Reasons to Rent a Car Dubai Style this Summer",
+      "description": "Summer is more than just a beach and a body, and Autozoom Luxury Car Rental is more than just a regular car hire business. We're your one-stop four-wheel solution to making the most of your time in Dubai."
+    }
+  }
 }
