@@ -5,7 +5,6 @@ import NotFound from "./components/NotFound/NotFound";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Faqpage from "./Pages/Faqpage";
-import CarsInfo from "./components/UI/CarsInfo/CarsInfo";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,6 +21,7 @@ function App() {
   const handleAllCategory = (category) => {
     setSelectedCategory(category);
   };
+
   const handleBrand = (brand) => {
     setSelectedBrand(brand);
   };
@@ -41,6 +41,7 @@ function App() {
   const About = lazy(() => import("./Pages/About"));
   const Contact = lazy(() => import("./Pages/Contact"));
   const Blog = lazy(() => import("./Pages/Blog"));
+  const CarsInfo = lazy(() => import("./components/UI/CarsInfo/CarsInfo"));
 
   return (
     <Router>
@@ -88,7 +89,7 @@ function App() {
             </Routes>
           </Suspense>
         </div>
-        <Footer />
+        <Footer handleAllCategory={handleAllCategory} />
       </div>
     </Router>
   );
